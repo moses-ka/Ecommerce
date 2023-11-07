@@ -1,6 +1,6 @@
 import React from "react";
 import { GoPersonFill } from "react-icons/go";
-
+import {BiSolidCartAlt} from "react-icons/bi";
 export default function NavBar() {
   return (
     <>
@@ -114,6 +114,13 @@ export default function NavBar() {
                 >
                   Home
                 </a>
+              </li>
+              <li>
+              <BiSolidCartAlt className="w-5 h-5 text-black dark:text-white" />
+              </li>
+              <li>
+                
+               < GoPersonFill className="w-5 h-5 text-black dark:text-white" />
               </li>
               {/* here add more links to nav bar */}
             </ul>

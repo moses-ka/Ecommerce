@@ -1,4 +1,5 @@
-import NavBar from "./components/NavBar"
+// import NavBar from "./components/NavBar"
+import SideBar from "./components/SideBar"
 
 
 function App() {
@@ -6,9 +7,11 @@ function App() {
 
   return (
     <>
-    <NavBar/>
-      <h1 className="  text-red-900  text-center"></h1>
-    </>
+    {/* <NavBar/> */}
+    <SideBar/>
+      <h1 className="  text-red-900  text-center"> Hello World</h1>
+
+</>
   )
 }
 

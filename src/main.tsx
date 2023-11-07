@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import  { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
@@ -11,7 +11,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="/hello" element={<Hello />} />
     </Routes>
-  </Router>,
+  </Router>
   </StrictMode>,
   document.getElementById('root')
 );
