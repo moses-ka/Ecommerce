@@ -1,6 +1,8 @@
 // import NavBar from "./components/NavBar"
 import SideBar from "./components/SideBar"
 
+import Loading from "../src/components/Loading";
+import Products from "./components/Products";
 
 function App() {
 
@@ -9,7 +11,8 @@ function App() {
     <>
     {/* <NavBar/> */}
     <SideBar/>
-      <h1 className="  text-red-900  text-center"> Hello World</h1>
+    {/* <Loading/> */}
+    <Products/>
 
 </>
   )

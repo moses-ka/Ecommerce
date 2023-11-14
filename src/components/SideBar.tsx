@@ -4,7 +4,6 @@ import { GoPersonFill } from "react-icons/go";
 import {BiSolidCartAlt ,BiSolidSearchAlt2} from "react-icons/bi";
 import {MdFavorite} from "react-icons/md";
 
-import Loading from "./Loading";
 export default function SideBar() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -191,7 +190,7 @@ export default function SideBar() {
         </div>
       </aside>
 
-     <Loading/>
+   
     </>
   );
 }

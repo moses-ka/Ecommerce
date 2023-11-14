@@ -1,4 +1,4 @@
-import React from "react";
+
 import { GoPersonFill } from "react-icons/go";
 import {BiSolidCartAlt} from "react-icons/bi";
 export default function NavBar() {
