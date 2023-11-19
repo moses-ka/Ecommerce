@@ -25,7 +25,7 @@ export default function Products() {
 
   }, [])
 
-  
+  console.log(user , 'this is user state ')
   return (  
     <>
     <div className='p-2 mt-16  focus:translate-x-[16rem]  w-full md:w-[79%]   md:absolute  md:left-64 '>

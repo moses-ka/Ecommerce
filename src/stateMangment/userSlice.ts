@@ -1,23 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+// userSlice.ts
+import { createSlice } from '@reduxjs/toolkit';
+
+const reduxUserState = localStorage.getItem('reduxUserState');
+const { user_name = '', token = '', logging = false } 
+= typeof reduxUserState === 'string' ? JSON.parse(reduxUserState) : {};
 
 export const userSlice = createSlice({
-    name:"user",
-    initialState:{
-        user:"",
-        token:"",
-        loggedIn:false
+  name: 'user',
+  initialState: {
+    user_name: user_name || '',
+    token: token || '',
+    logging: logging || false,
+  },
+  reducers: {
+    loggedIn: (state, action) => {
+      return { ...state, ...action.payload };
     },
-    reducers:{
-      loggedIn:(state,action)=>{
-        state.user = action.payload.user
-        state.token = action.payload.token
-        state.loggedIn = true
-      },
-      loggedOut:(state)=>{
-        state.user = ""
-        state.token = ""
-        state.loggedIn = false
+    loggedOut: (state) => {
+      state.user_name = '';
+      state.token = '';
+      state.logging = false;
     },
-}})
-export const {loggedIn,loggedOut} = userSlice.actions
-export default userSlice.reducer
+  },
+});
+
+export const { loggedIn, loggedOut } = userSlice.actions;
+export default userSlice.reducer;

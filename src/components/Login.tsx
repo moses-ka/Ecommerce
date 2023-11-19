@@ -1,63 +1,45 @@
-import { Link } from "react-router-dom";
-import {  useState,useEffect } from "react";
-import axios from "axios";
-import { loggedIn } from "../stateMangment/userSlice";
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from "react-router-dom";
- interface stateType {
+import { useState } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { loggedIn } from '../stateMangment/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// interface loggedInUserType {
+//   user?: string;
+//   token?: string;
+//   loggedIn?: boolean;
+// }
 
-      user:"",
-      token:"",
-      loggedIn:false
-  }
-  interface loggedInUserType {
-    user_name?:'',
-    token?:'' 
-  } 
-  export default function Login() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loggedInUser, setLoggedInUser] = useState<loggedInUserType>({});
-    const dispatch = useDispatch();
-    const user = useSelector((state: stateType) => state.user);
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      // This effect will run whenever loggedInUser changes
-      if (loggedInUser.token) {
-        dispatch(
-          loggedIn({
-            user: username,
-            token: loggedInUser.token,
-            loggedIn: true,
-          })
-        );
-      }
-      if(loggedInUser.token){
+export default function Login() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const send = () => {
+    const url = 'http://127.0.0.1:8000/signin/';
+    axios
+      .post(url, {
+        username: username,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        const { user_name, token } = res.data;
+        dispatch(loggedIn({ user_name, token, logging: true }));
+        localStorage.setItem('reduxUserState', JSON.stringify({ user_name, token, logging: true }));
         navigate('/');
-      }
-    }, [loggedInUser, dispatch, username]);
-  
-    const send = () => {
-      const url = 'http://127.0.0.1:8000/signin/';
-      axios
-        .post(url, {
-          username: username,
-          email: email,
-          password: password,
-        })
-        .then((res) => setLoggedInUser(res.data))
-        .catch((err) => console.log(err));
-    };
-  
-    const HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      console.log('handle submit been called');
-      send(); // Send the API request
-      
-    };
-    console.log(user ,'this is user state ');
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('handle submit been called');
+    send(); // Send the API request
+  };
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -84,7 +66,7 @@ import { useNavigate } from "react-router-dom";
               >
                 Sign in to your account
               </h1>
-              <form onSubmit={HandleSubmit} className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
                     htmlFor="email"
