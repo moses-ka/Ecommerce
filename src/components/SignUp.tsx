@@ -6,7 +6,6 @@ export default function SignUp() {
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
     const [confirmPassword , setConfirmPassword] = useState('')
-    const [userTerms , setUserTerms] = useState(false)
     const [errorMsg , setErrorMsg] = useState('')
     const send = ()=>{
         const url = 'http://127.0.0.1:8000/signup/'
@@ -20,7 +19,7 @@ export default function SignUp() {
       }
     const HandleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        console.log(username , email , password , confirmPassword , userTerms , 'this is data')
+        console.log(username , email , password , confirmPassword , 'this is data')
         if (password !== confirmPassword){
             setErrorMsg("Password does not match")
         }
@@ -151,7 +150,6 @@ export default function SignUp() {
                         dark:bg-gray-700 dark:border-gray-600 
                         dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       required={true}
-                        onChange={(e)=>setUserTerms(e.target.checked)}
                     />
                   </div>
                   <div className="ml-3 text-sm">

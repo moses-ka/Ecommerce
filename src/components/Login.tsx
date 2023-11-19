@@ -1,27 +1,63 @@
 import { Link } from "react-router-dom";
-import {  useState } from "react";
+import {  useState,useEffect } from "react";
 import axios from "axios";
-export default function Login() {
-    const [username , setUsername] = useState('')
-    const [email , setEmail] = useState('')
-    const [password , setPassword] = useState('')
-    const send = ()=>{
-        const url = 'http://127.0.0.1:8000/signin/'
-            axios.post(url,{
-                username:username,
-                email:email,
-                password:password
-            })
-            .then(res=>console.log(res,'this is res'))
-            .catch(err=>console.log(err))
+import { loggedIn } from "../stateMangment/userSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+ interface stateType {
 
-    }
-    const HandleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
-        e.preventDefault()
-        console.log(username,email,password,'all good')
-        send()
-    }
-    
+      user:"",
+      token:"",
+      loggedIn:false
+  }
+  interface loggedInUserType {
+    user_name?:'',
+    token?:'' 
+  } 
+  export default function Login() {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loggedInUser, setLoggedInUser] = useState<loggedInUserType>({});
+    const dispatch = useDispatch();
+    const user = useSelector((state: stateType) => state.user);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // This effect will run whenever loggedInUser changes
+      if (loggedInUser.token) {
+        dispatch(
+          loggedIn({
+            user: username,
+            token: loggedInUser.token,
+            loggedIn: true,
+          })
+        );
+      }
+      if(loggedInUser.token){
+        navigate('/');
+      }
+    }, [loggedInUser, dispatch, username]);
+  
+    const send = () => {
+      const url = 'http://127.0.0.1:8000/signin/';
+      axios
+        .post(url, {
+          username: username,
+          email: email,
+          password: password,
+        })
+        .then((res) => setLoggedInUser(res.data))
+        .catch((err) => console.log(err));
+    };
+  
+    const HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log('handle submit been called');
+      send(); // Send the API request
+      
+    };
+    console.log(user ,'this is user state ');
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
