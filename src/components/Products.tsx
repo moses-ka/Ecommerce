@@ -13,10 +13,11 @@ export default function Products() {
      fetch('http://127.0.0.1:8000/api/products')
     .then(res => res.json())
     .then(data => setData(data))
-
+   
   }, [])
 
   // console.log(user , 'this is user state ')
+  console.log(data, 'this is data')
   return (  
     <>
     <div className='p-2 mt-16  focus:translate-x-[16rem]  w-full md:w-[79%]   md:absolute  md:left-64 '>
