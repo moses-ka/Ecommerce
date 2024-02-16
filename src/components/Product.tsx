@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 import { productType } from "../types";
-
+import { useDispatch } from 'react-redux';
+import { addItem } from '../stateMangment/basketSlice';
 
 export default function Product(props: productType) {
+  const dispatch = useDispatch()
 
   const { title, price, img,id,description }: productType = props;
 
   const imgUrl = `http://127.0.0.1:8000/${img}`;
- 
+  const handlAddItem = ()=>{
+    console.log('this is the id', id)
+    dispatch(addItem({title,price,img,description,id}))
+  }
   return (
     <>
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow
@@ -33,14 +38,14 @@ export default function Product(props: productType) {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${price}
             </span>
-            <a
-              href="#"
+            <button
+              onClick={handlAddItem}
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
                focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center
                 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Add to cart
-            </a>
+            </button>
           </div>
         </div>
       </div>

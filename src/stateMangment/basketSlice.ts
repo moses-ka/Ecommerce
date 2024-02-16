@@ -1,5 +1,7 @@
 // basketSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { productType } from '../types';
 
 // const reduxUserState = localStorage.getItem('reduxUserState');
 // const { user_name = '', token = '', logging = false } 
@@ -9,16 +11,18 @@ export const basketSlice = createSlice({
   name: 'basket',
   initialState: {
    
-    products: [] ,
+    products: [] as productType[],
     user: '' || false, // this is if there is a state will take it or init it empty
   },
   reducers: {
-    addItem: (state, action) => {
+    addItem: (state, action : PayloadAction<productType>) => {
       state.products.push(action.payload);
       return { ...state};
     },
     removeItem: (state, action) => {
-      return { ...state, ...action.payload };
+     
+      state.products = state.products.filter((item) => item.id !== action.payload);
+      return { ...state};
     }
   },
 });
