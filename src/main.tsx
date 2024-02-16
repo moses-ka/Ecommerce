@@ -10,6 +10,7 @@ import { createRoot } from 'react-dom/client';
 import store from './stateMangment/store'
 import { Provider } from 'react-redux';
 import Product from './components/ProductDetails';
+import Cart from './components/cart';
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
@@ -24,6 +25,7 @@ root.render(
        <Route path="/login" element={<Login/>} />
        <Route path='/signup' element={<SignUp/>} /> 
        <Route path='product/:id' element={<Product/>} />
+       <Route path="/cart" element={<Cart/>} />
       </Routes>
     </Router>
   </StrictMode>

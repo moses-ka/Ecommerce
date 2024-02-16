@@ -13,11 +13,15 @@ export const basketSlice = createSlice({
     user: '' || false, // this is if there is a state will take it or init it empty
   },
   reducers: {
-    loggedIn: (state, action) => {
-      return { ...state, ...action.payload };
+    addItem: (state, action) => {
+      state.products.push(action.payload);
+      return { ...state};
     },
+    removeItem: (state, action) => {
+      return { ...state, ...action.payload };
+    }
   },
 });
 
-export const { loggedIn, loggedOut } = basketSlice.actions;
+export const { addItem, removeItem } = basketSlice.actions;
 export default basketSlice.reducer;
