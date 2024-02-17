@@ -5,12 +5,13 @@ import { addItem } from '../stateMangment/basketSlice';
 
 export default function Product(props: productType) {
   const dispatch = useDispatch()
-
+  
   const { title, price, img,id,description }: productType = props;
 
   const imgUrl = `http://127.0.0.1:8000/${img}`;
   const handlAddItem = ()=>{
     console.log('this is the id', id)
+   
     dispatch(addItem({title,price,img,description,id}))
   }
   return (
