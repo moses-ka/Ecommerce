@@ -23,7 +23,7 @@ export const basketSlice = createSlice({
     removeItem: (state, action) => {
      
       state.products = state.products.filter((item: productType) => item.id !== action.payload);
-      
+      localStorage.setItem('reduxBasketState', JSON.stringify(state.products));
     }
   },
 });

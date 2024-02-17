@@ -8,6 +8,7 @@ import Product from './Product'
 
 export default function Products() {
   const [data, setData] = useState([])
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = useSelector((state:stateType) => state.user)
   useEffect(() => {
      fetch('http://127.0.0.1:8000/api/products')
