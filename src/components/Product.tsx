@@ -1,25 +1,32 @@
 import { Link } from "react-router-dom";
 import { productType } from "../types";
-import { useDispatch } from 'react-redux';
-import { addItem } from '../stateMangment/basketSlice';
+import { useDispatch } from "react-redux";
+import { addItem } from "../stateMangment/productsSlice";
 
 export default function Product(props: productType) {
-  const dispatch = useDispatch()
-  
-  const { title, price, img,id,description }: productType = props;
+  const dispatch = useDispatch();
+
+  const { title, price, img, id, description }: productType = props;
 
   const imgUrl = `http://127.0.0.1:8000/${img}`;
-  const handlAddItem = ()=>{
-    console.log('this is the id', id)
-   
-    dispatch(addItem({title,price,img,description,id}))
-  }
+  const handlAddItem = () => {
+    console.log("this is the id", id);
+
+    dispatch(addItem({ title, price, img, description, id }));
+  };
+  console.log();
   return (
     <>
-      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow
-       dark:bg-gray-800 dark:border-gray-700 ">
+      <div
+        className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow
+       dark:bg-gray-800 dark:border-gray-700 "
+      >
         <Link to={`/product/${id}`}>
-          <img className=" rounded-t-lg w-full shadow-md" src={imgUrl} alt="product img" />
+          <img
+            className=" rounded-t-lg w-full shadow-md"
+            src={imgUrl}
+            alt="product img"
+          />
         </Link>
         <div className="p-4">
           <Link to={`/product/${id}`}>
@@ -28,11 +35,13 @@ export default function Product(props: productType) {
             </h5>
           </Link>
           <div className="flex items-center  mb-5">
-          <p className="leading-relaxed">{description}</p>
-          
-            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded
-             dark:bg-blue-200 dark:text-blue-800 ms-3">
-             TAG
+            <p className="leading-relaxed">{description}</p>
+
+            <span
+              className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded
+             dark:bg-blue-200 dark:text-blue-800 ms-3"
+            >
+              TAG
             </span>
           </div>
           <div className="flex items-center justify-between">

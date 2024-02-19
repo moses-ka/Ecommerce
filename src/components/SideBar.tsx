@@ -3,13 +3,14 @@ import  { useState,useRef } from "react";
 import { GoPersonFill } from "react-icons/go";
 import {BiSolidCartAlt ,BiSolidSearchAlt2} from "react-icons/bi";
 import {MdFavorite} from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
 export default function SideBar() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const sideBarRef = useRef<HTMLAnchorElement>(null);
     const search = useRef<HTMLInputElement>(null);
    const [searchValue, setSearchValue] = useState("");
+   const Navigate = useNavigate ()
     const ToggleSideBar = () => {
     setIsSideBarOpen(!isSideBarOpen);
     if (isSideBarOpen) {
@@ -87,8 +88,14 @@ export default function SideBar() {
 
                 <BiSolidSearchAlt2 className="w-6 h-6 text-black dark:text-white"/>
                 </button>
+               
               <GoPersonFill className="w-6 h-6 text-black dark:text-white"/>
+              
+              <button onClick={()=>{
+                  Navigate('/cart')
+                }}>
              <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white"/>
+             </button>
              <MdFavorite className="w-6 h-6 text-black dark:text-white"/>
           
               </div>

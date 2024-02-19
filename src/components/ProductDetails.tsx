@@ -2,6 +2,7 @@ import  { useParams } from 'react-router-dom'
 import { useState,useEffect } from 'react';
 import {productType} from '../types'
 import axios from 'axios';
+import SideBar from './SideBar';
 export default function Product() {
   const {id} = useParams()
   const [product, setProduct] = useState<productType>();
@@ -14,6 +15,7 @@ export default function Product() {
 
   return (
     <>
+    <SideBar/>
       <section className="text-gray-700 body-font overflow-hidden bg-white">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">

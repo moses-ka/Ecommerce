@@ -1,6 +1,6 @@
 
 import { useEffect,useState } from 'react'
-import {stateType,productType} from '../types'
+import {userType,productType} from '../types'
 import { useSelector } from 'react-redux'
 import Product from './Product'
 
@@ -9,7 +9,7 @@ import Product from './Product'
 export default function Products() {
   const [data, setData] = useState([])
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const user = useSelector((state:stateType) => state.user)
+  const user = useSelector((state:userType) => state.user)
   useEffect(() => {
      fetch('http://127.0.0.1:8000/api/products')
     .then(res => res.json())
@@ -17,7 +17,7 @@ export default function Products() {
    
   }, [])
 
-  // console.log(user , 'this is user state ')
+  console.log(user , 'this is user state ')
   // console.log(data, 'this is data')
   return (  
     <>
