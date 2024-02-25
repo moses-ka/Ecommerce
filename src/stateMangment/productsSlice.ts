@@ -9,13 +9,13 @@ export const productSlice = createSlice({
   initialState:stateFromLocalStorage ? JSON.parse(stateFromLocalStorage) : [] as productType[], // Assuming products is an array of productType,
   reducers: {
     addItem: (state, action: PayloadAction<productType>) => {
-      state.products.push(action.payload);
+      state.push(action.payload);
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
     removeItem: (state, action: PayloadAction<number>) => {
-      const updatedProducts = state.products.filter(item => item.id !== action.payload);
-      state.products = updatedProducts;
+      const updatedProducts = state.filter((item: productType) => item.id !== action.payload);
+      state = updatedProducts;
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     }

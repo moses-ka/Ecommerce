@@ -5,14 +5,15 @@ import { productType, RootState } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
 export default function Cart() {
-  const [cart, setCart] = useState([]); // This is the cart state [item1, item2, ...
+  const [cart, setCart] = useState<productType[]>([]); // This is the cart state [item1, item2, ...
   const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.products); // Accessing products from Redux store
+  const products = useSelector((state: RootState) => state.products); // Accessing products from Redux store
   useEffect(() => {
     setCart(products); // Setting cart state to products from Redux store
   }, [products]);
 
   const handleRemoveItem = (id: number) => {
+    setCart(cart.filter((item) => item.id !== id)); // Removing item from cart state
     dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
   };
   return (
@@ -27,7 +28,7 @@ export default function Cart() {
               </h1>
             </header>
             <ul className="space-y-4">
-              {cart.length === 0 && (
+              {cart?.length === 0 && (
                 <p className="mt-8 text-center text-gray-600">
                   Your cart is empty
                 </p>
