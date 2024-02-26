@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
 export default function Cart() {
   const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0); 
   const [cart, setCart] = useState<Array<productType>>([]); // This is the cart state [item1, item2, ...
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products); // Accessing products from Redux store
@@ -23,7 +24,11 @@ export default function Cart() {
       total = Number(price) + total;
     });
     setSubtotal(total);
+    let  vat = total === 0 ? 0 : 0.17 * total;
+    vat = parseFloat(vat.toFixed(2));
+    setTotal(total + vat);
   }, [cart]);
+  
   console.log(subtotal, "this is total");
   return (
     <>
@@ -129,7 +134,7 @@ export default function Cart() {
 
                   <div className="flex justify-between">
                     <dt>VAT</dt>
-                    <dd>0.25 Euro</dd>
+                    <dd>0.17 Euro</dd>
                   </div>
 
                   <div className="flex justify-between">
@@ -139,7 +144,7 @@ export default function Cart() {
 
                   <div className="flex justify-between !text-base font-medium">
                     <dt>Total</dt>
-                    <dd>£200</dd>
+                    <dd>{total} Euro</dd>
                   </div>
                 </dl>
 
