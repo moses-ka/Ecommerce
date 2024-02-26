@@ -14,3 +14,10 @@ export interface productType {
 export interface RootState {
   productSlice: productType[]
 }
+export interface searchResultsType {
+  id: number;
+  title: string;
+  price: number;
+  img: string;
+  description: string;
+}

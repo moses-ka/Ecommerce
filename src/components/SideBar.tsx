@@ -1,17 +1,18 @@
-
-import  { useState,useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { GoPersonFill } from "react-icons/go";
-import {BiSolidCartAlt ,BiSolidSearchAlt2} from "react-icons/bi";
-import {MdFavorite} from "react-icons/md";
+import { BiSolidCartAlt, BiSolidSearchAlt2 } from "react-icons/bi";
+import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import SearchResults from "./SearchResults";
 export default function SideBar() {
-    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const sideBarRef = useRef<HTMLAnchorElement>(null);
-    const search = useRef<HTMLInputElement>(null);
-   const [searchValue, setSearchValue] = useState("");
-   const Navigate = useNavigate ()
-    const ToggleSideBar = () => {
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const sideBarRef = useRef<HTMLAnchorElement>(null);
+  const search = useRef<HTMLInputElement>(null);
+  const [results, setResults] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const Navigate = useNavigate();
+  const ToggleSideBar = () => {
     setIsSideBarOpen(!isSideBarOpen);
     if (isSideBarOpen) {
       sideBarRef.current?.classList.add("-translate-x-full");
@@ -19,30 +20,35 @@ export default function SideBar() {
     if (!isSideBarOpen) {
       sideBarRef.current?.classList.remove("-translate-x-full");
     }
-    };
-    const Search = () => {
-        setIsSearchOpen(!isSearchOpen);
-        if (isSearchOpen) {
-          search.current?.classList.add("hidden");
-        }
-        if (!isSearchOpen) {
-          search.current?.classList.remove("hidden");
-        }
-       // this function is handlinig the search bar show it and hide it
+  };
+  const Search = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (isSearchOpen) {
+      search.current?.classList.add("hidden");
     }
-    const blur = () => {
-        setIsSearchOpen(false);
-        search.current?.classList.add("hidden");
-         // this function is hiding the search bar when it is not in focus
+    if (!isSearchOpen) {
+      search.current?.classList.remove("hidden");
     }
-    const HandlSearch = () => {
-        console.log(searchValue);
-        // this function is handlinig the search bar value
+    // this function is handlinig the search bar show it and hide it
+  };
+  const blur = () => {
+    setIsSearchOpen(false);
+    search.current?.classList.add("hidden");
+    // this function is hiding the search bar when it is not in focus
+  };
+
+  useEffect(() => {
+    if (searchValue === "") {
+      return;
     }
+    fetch(`http://127.0.0.1:8000/api/products/search/${searchValue}`)
+      .then((res) => res.json())
+      .then((data) => setResults(data));
+  }, [searchValue]);
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b   border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <div className="px-3 py-3 lg:px-5 lg:pl-3">
+        <div className="px-3 py-3 lg:px-5 lg:pl-3 h-24 flex flex-col  justify-center">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
               <button
@@ -52,8 +58,8 @@ export default function SideBar() {
                 type="button"
                 onClick={ToggleSideBar}
                 className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              > 
-              {/* toggle side bar  */}
+              >
+                {/* toggle side bar  */}
                 <span className="sr-only">Open sidebar</span>
                 <svg
                   className="w-6 h-6"
@@ -69,40 +75,52 @@ export default function SideBar() {
                   ></path>
                 </svg>
               </button>
-             
-                <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  <button onClick={()=>{
-                    Navigate('/')
-                  }}>
 
+              <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                <button
+                  onClick={() => {
+                    Navigate("/");
+                  }}
+                >
                   Logo
-                  </button>
-                </span>
-             
+                </button>
+              </span>
             </div>
             <div className="flex items-center">
-              <div className="flex items-center ml-3 justify-center gap-4">
-                <form onSubmit={HandlSearch} action="">
-                <input onChange={(e)=> setSearchValue(e.target.value)} type="text" ref={search} onBlur={blur} placeholder="Search" 
-                className="border-2 hidden border-gray-200 rounded-lg p-1"/>
-
+              <div className="flex items-center j ml-3 justify-center  gap-4">
+                <form
+                  className=""
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setSearchValue(searchValue);
+                  }}
+                  action=""
+                >
+                  
                 </form>
-               
-                 
+                <input
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    type="text"
+                    ref={search}
+                    onBlur={blur}
+                    placeholder="Search"
+                    className="border-2 hidden border-gray-200 rounded-lg p-1"
+                  />
                 <button onClick={Search}>
-
-                <BiSolidSearchAlt2 className="w-6 h-6 text-black dark:text-white"/>
+                  <BiSolidSearchAlt2 className="w-6 h-6 text-black dark:text-white" />
                 </button>
-               
-              <GoPersonFill className="w-6 h-6 text-black dark:text-white"/>
-              
-              <button onClick={()=>{
-                  Navigate('/cart')
-                }}>
-             <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white"/>
-             </button>
-             <MdFavorite className="w-6 h-6 text-black dark:text-white"/>
-          
+
+                <GoPersonFill className="w-6 h-6 text-black dark:text-white" />
+
+                <button
+                  onClick={() => {
+                    Navigate("/cart");
+                  }}
+                >
+                  <SearchResults results={results} />
+                  <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
+                </button>
+                <MdFavorite className="w-6 h-6 text-black dark:text-white" />
               </div>
             </div>
           </div>
@@ -178,7 +196,7 @@ export default function SideBar() {
                 </span>
               </a>
             </li>
-            
+
             <li>
               <a
                 href="#"
@@ -196,13 +214,9 @@ export default function SideBar() {
                 <span className="flex-1 ml-3 whitespace-nowrap">Products</span>
               </a>
             </li>
-           
-           
           </ul>
         </div>
       </aside>
-
-   
     </>
   );
 }
