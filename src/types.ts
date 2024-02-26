@@ -12,5 +12,5 @@ export interface productType {
   description: string;
 }
 export interface RootState {
-  productType: productType[]
+  productSlice: productType[]
 }

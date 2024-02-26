@@ -29,7 +29,7 @@ export default function Cart() {
     setTotal(total + vat);
   }, [cart]);
   
-  console.log(subtotal, "this is total");
+  
   return (
     <>
       <SideBar />
@@ -148,7 +148,7 @@ export default function Cart() {
                   </div>
                 </dl>
 
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <span className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@ export default function Cart() {
                       2 Discounts Applied
                     </p>
                   </span>
-                </div>
+                </div> */}
 
                 <div className="flex justify-end">
                   <a
