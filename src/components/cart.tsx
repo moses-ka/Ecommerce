@@ -35,7 +35,7 @@ export default function Cart() {
               )}
 
               <div className="mt-8">
-                {cart && cart.map((item: productType) => {
+                {cart && cart?.map((item: productType) => {
                     return (
                       <div key={item.id}>
                         <li className="flex items-center gap-4">
