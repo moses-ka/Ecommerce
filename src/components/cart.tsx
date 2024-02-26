@@ -5,7 +5,8 @@ import { productType, RootState } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
 export default function Cart() {
-  const [cart, setCart] = useState([]); // This is the cart state [item1, item2, ...
+  const [subtotal, setSubtotal] = useState(0);
+  const [cart, setCart] = useState<Array<productType>>([]); // This is the cart state [item1, item2, ...
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products); // Accessing products from Redux store
   useEffect(() => {
@@ -15,9 +16,18 @@ export default function Cart() {
   const handleRemoveItem = (id: number) => {
     dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
   };
+  useEffect(() => {
+    let total = 0;
+    cart.map((item: productType) => {
+      const price = item.price;
+      total = Number(price) + total;
+    });
+    setSubtotal(total);
+  }, [cart]);
+  console.log(subtotal, "this is total");
   return (
     <>
-    <SideBar/>
+      <SideBar />
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <div className="mx-auto max-w-3xl">
@@ -34,7 +44,8 @@ export default function Cart() {
               )}
 
               <div className="mt-8">
-                {cart && cart.map((item: productType) => {
+                {cart &&
+                  cart.map((item: productType) => {
                     return (
                       <div key={item.id}>
                         <li className="flex items-center gap-4">
@@ -113,17 +124,17 @@ export default function Cart() {
                 <dl className="space-y-0.5 text-sm text-gray-700">
                   <div className="flex justify-between">
                     <dt>Subtotal</dt>
-                    <dd>£250</dd>
+                    <dd>{subtotal} Euro</dd>
                   </div>
 
                   <div className="flex justify-between">
                     <dt>VAT</dt>
-                    <dd>£25</dd>
+                    <dd>0.25 Euro</dd>
                   </div>
 
                   <div className="flex justify-between">
                     <dt>Discount</dt>
-                    <dd>-£20</dd>
+                    <dd>0 Euro</dd>
                   </div>
 
                   <div className="flex justify-between !text-base font-medium">

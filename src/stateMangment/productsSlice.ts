@@ -14,7 +14,7 @@ export const productSlice = createSlice({
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
     removeItem: (state, action: PayloadAction<number>) => {
-      const updatedProducts = state.products.filter(item => item.id !== action.payload);
+      const updatedProducts = state.products.filter( (item: productType) => item.id !== action.payload);
       state.products = updatedProducts;
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
