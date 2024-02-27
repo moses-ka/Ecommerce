@@ -30,7 +30,8 @@ export default function Products() {
               return <Product key={item.id} 
               title={item.title} price={item.price}
                img={item.img} id={item.id} 
-               description={item.description}/>
+               description={item.description}
+               tags={item.tags}/>
           })}
      </div>  
     </div>

@@ -10,6 +10,7 @@ export interface productType {
   price: number;
   img: string;
   description: string;
+  tags: string;
 }
 export interface RootState {
   productSlice: productType[]

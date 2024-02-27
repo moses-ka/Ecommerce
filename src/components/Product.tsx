@@ -6,13 +6,13 @@ import { addItem } from "../stateMangment/productsSlice";
 export default function Product(props: productType) {
   const dispatch = useDispatch();
 
-  const { title, price, img, id, description }: productType = props;
+  const { title, price, img, id, description,tags }: productType = props;
 
   const imgUrl = `http://127.0.0.1:8000/${img}`;
   const handlAddItem = () => {
     console.log("this is the id", id);
 
-    dispatch(addItem({ title, price, img, description, id }));
+    dispatch(addItem({ title, price, img, description, id,tags }));
   };
   console.log();
   return (
@@ -41,7 +41,7 @@ export default function Product(props: productType) {
               className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded
              dark:bg-blue-200 dark:text-blue-800 ms-3"
             >
-              TAG
+              {tags}
             </span>
           </div>
           <div className="flex items-center justify-between">

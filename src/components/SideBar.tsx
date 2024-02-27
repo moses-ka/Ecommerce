@@ -117,9 +117,9 @@ export default function SideBar() {
                     Navigate("/cart");
                   }}
                 >
-                  <SearchResults results={results} />
                   <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
                 </button>
+                  <SearchResults results={results} />
                 <MdFavorite className="w-6 h-6 text-black dark:text-white" />
               </div>
             </div>
