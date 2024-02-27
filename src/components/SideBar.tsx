@@ -48,6 +48,7 @@ export default function SideBar() {
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b   border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <SearchResults results={results} searchBar={isSearchOpen} />
         <div className="px-3 py-3 lg:px-5 lg:pl-3 h-24 flex flex-col  justify-center">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
@@ -87,7 +88,7 @@ export default function SideBar() {
               </span>
             </div>
             <div className="flex items-center">
-              <div className="flex items-center j ml-3 justify-center  gap-4">
+              <div className="flex items-center j ml-3 justify-center  gap-4 mr-2">
                 <form
                   className=""
                   onSubmit={(e) => {
@@ -95,17 +96,15 @@ export default function SideBar() {
                     setSearchValue(searchValue);
                   }}
                   action=""
-                >
-                  
-                </form>
+                ></form>
                 <input
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    type="text"
-                    ref={search}
-                    onBlur={blur}
-                    placeholder="Search"
-                    className="border-2 hidden border-gray-200 rounded-lg p-1"
-                  />
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  type="text"
+                  ref={search}
+                  onBlur={blur}
+                  placeholder="Search"
+                  className="border-2 hidden border-gray-200 rounded-lg p-1 "
+                />
                 <button onClick={Search}>
                   <BiSolidSearchAlt2 className="w-6 h-6 text-black dark:text-white" />
                 </button>
@@ -119,7 +118,7 @@ export default function SideBar() {
                 >
                   <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
                 </button>
-                  <SearchResults results={results} />
+                
                 <MdFavorite className="w-6 h-6 text-black dark:text-white" />
               </div>
             </div>
