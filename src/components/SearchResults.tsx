@@ -17,7 +17,7 @@ export default function SearchResults(props: {
   }, [props.searchBar, props.results]);
   const Navigate = useNavigate();
 
-  console.log(search, "this is the results");
+
   return (
     <>
       <div

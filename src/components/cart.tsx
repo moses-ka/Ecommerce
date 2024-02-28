@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { removeItem } from "../stateMangment/productsSlice";
-import { productType, RootState } from "../types";
+import { editItem, removeItem } from "../stateMangment/productsSlice";
+import { productType, RootState, productInCartType } from "../types";
 
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
 export default function Cart() {
   const [subtotal, setSubtotal] = useState(0);
-  const [total, setTotal] = useState(0); 
-  const [cart, setCart] = useState<Array<productType>>([]); // This is the cart state [item1, item2, ...
+  const [total, setTotal] = useState(0);
+  const [cart, setCart] = useState<Array<productInCartType>>([]); // This is the cart state [item1, item2, ...
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products); // Accessing products from Redux store
   useEffect(() => {
@@ -24,11 +24,43 @@ export default function Cart() {
       total = Number(price) + total;
     });
     setSubtotal(total);
-    let  vat = total === 0 ? 0 : 0.17 * total;
+    let vat = total === 0 ? 0 : 0.17 * total;
     vat = parseFloat(vat.toFixed(2));
     setTotal(total + vat);
   }, [cart]);
-  
+  const handleChange = (id: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const updatedCart = cart.map((item: productInCartType) => {
+      if (item.id === id) {
+        item.quantity = Number(value);
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+const handleMinusClick = (id: number) => () => { //This code defines a function handleMinusClick that takes an id as an argument and returns another function. This returned function updates the cart by decreasing the quantity of the item with the matching id and then updates the cart state and dispatches an action to edit the item
+  const updatedCart = cart.map((item: productInCartType) => {  
+    if (item.id === id) {
+      return { ...item, quantity: Number(item.quantity) - 1 };
+    }
+   
+    return item;
+  });
+  setCart(updatedCart);
+  dispatch(editItem(updatedCart[0]));
+};
+  const handlePlusClick = (id: number) => () => { //This code defines a function handlePlusClick that takes an id as input and returns another function. When the returned function is called, it updates the cart by increasing the quantity of the item with the matching id by 1, and then dispatches an action to edit the item and updates the state with the new cart.
+
+    const updatedCart = cart.map((item: productInCartType) => {
+      if (item.id === id) {
+        return {...item , quantity: Number(item.quantity) + 1 };
+      }
+      return item;
+    });
+   
+    dispatch(editItem(updatedCart[0]));
+    setCart(updatedCart);
+  };
   
   return (
     <>
@@ -50,7 +82,7 @@ export default function Cart() {
 
               <div className="mt-8">
                 {cart &&
-                  cart.map((item: productType) => {
+                  cart.map((item: productInCartType) => {
                     return (
                       <div key={item.id}>
                         <li className="flex items-center gap-4">
@@ -79,19 +111,43 @@ export default function Cart() {
                           </div>
 
                           <div className="flex flex-1 items-center justify-end gap-2">
-                            <form>
-                              <label htmlFor="Line1Qty" className="sr-only">
+                            <div>
+                              <label htmlFor="Quantity" className="sr-only">
                                 {" "}
                                 Quantity{" "}
                               </label>
 
-                              <input
-                                type="number"
-                                min="1"
-                                id="Line1Qty"
-                                className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                              />
-                            </form>
+                              <div className="flex items-center justify-center p-2 h-8 rounded border border-gray-200">
+                                <button
+                                  type="button"
+                                  className="size-10 leading-10 mr-1 text-gray-600 transition hover:opacity-75"
+                                  onClick={handleMinusClick(item.id)}
+
+                                >
+                                  -
+                                </button>
+
+                                <input
+                                  type="number"
+                                  id="Quantity"
+                                  min="1"
+                                  value={item.quantity}
+                                  onChange={handleChange(item.id)}
+                                  className="w-8 text-center text-gray-900  h-10  border-transparent  [-moz-appearance:_textfield] sm:text-sm 
+                                  [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 
+                                  [&::-webkit-outer-spin-button]:appearance-none"
+                                />
+                                
+                               
+                                <button
+                                  type="button"
+                                  className="size-10 ml-1 leading-10 text-gray-600 transition hover:opacity-75"
+                                  onClick={handlePlusClick(item.id)}
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </div>
 
                             <button
                               onClick={() => {

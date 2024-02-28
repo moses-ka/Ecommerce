@@ -10,11 +10,11 @@ export default function Product(props: productType) {
 
   const imgUrl = `http://127.0.0.1:8000/${img}`;
   const handlAddItem = () => {
-    console.log("this is the id", id);
+   
 
-    dispatch(addItem({ title, price, img, description, id,tags }));
+    dispatch(addItem({ title, price, img, description, id,tags,quantity:1 }));
   };
-  console.log();
+  
   return (
     <>
       <div
