@@ -7,10 +7,16 @@ import SideBar from "./SideBar";
 
 export default function Cart() {
 const [cart, setCart] = useState<productInCartType[]>([]); // Update the type of cart state
+const [subtotal, setSubtotal] = useState<number>(0);
+const [total, settotal] = useState<number>(0);
 const dispatch = useDispatch();
 const products = useSelector((state:StateType) => state.products); // Accessing products from Redux store
 useEffect(() => {
   setCart(products); // Setting cart state to products from Redux store
+  const subTotal = products.reduce((acc, item) => acc + item.price  * item.quantity , 0);
+  setSubtotal(subTotal);
+  const Total = products.reduce((acc, item) => acc + item.price *1.20 * item.quantity , 0);
+  settotal(Total);
 }, [products]);
 
 const handleRemoveItem = (id: number) => {
@@ -22,6 +28,8 @@ const handlePlus = (id:number) => {
 const handleMinus = (id:number) => {
   dispatch(minusItem(id));
 }
+// console.log(subtotal , "subtotal");
+// console.log(cart , "cart");
   return (
     <>
     <SideBar/>
@@ -119,26 +127,26 @@ const handleMinus = (id:number) => {
                 <dl className="space-y-0.5 text-sm text-gray-700">
                   <div className="flex justify-between">
                     <dt>Subtotal</dt>
-                    <dd>£250</dd>
+                    <dd>{subtotal} Euro</dd>
                   </div>
 
                   <div className="flex justify-between">
                     <dt>VAT</dt>
-                    <dd>£25</dd>
+                    <dd>20%</dd>
                   </div>
 
-                  <div className="flex justify-between">
+                  {/* <div className="flex justify-between">
                     <dt>Discount</dt>
                     <dd>-£20</dd>
-                  </div>
+                  </div> */}
 
                   <div className="flex justify-between !text-base font-medium">
                     <dt>Total</dt>
-                    <dd>£200</dd>
+                    <dd>{total}</dd>
                   </div>
                 </dl>
 
-                <div className="flex justify-end">
+                {/* <div className="flex justify-end">
                   <span className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +167,7 @@ const handleMinus = (id:number) => {
                       2 Discounts Applied
                     </p>
                   </span>
-                </div>
+                </div> */}
 
                 <div className="flex justify-end">
                   <a

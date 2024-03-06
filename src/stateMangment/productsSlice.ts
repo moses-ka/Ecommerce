@@ -40,6 +40,7 @@ export const productSlice = createSlice({
       const existingItem = state.find(item => item.id === action.payload);
       if (existingItem && existingItem.quantity>1) { // Check if quantity is greater than 1
         existingItem.quantity -= 1;
+        localStorage.setItem('reduxBasketState', JSON.stringify(state));
       }
     }, //
   }
