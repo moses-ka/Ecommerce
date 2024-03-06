@@ -16,7 +16,7 @@ useEffect(() => {
   const subTotal = products.reduce((acc, item) => acc + item.price  * item.quantity , 0);
   setSubtotal(subTotal);
   const Total = products.reduce((acc, item) => acc + item.price *1.20 * item.quantity , 0);
-  settotal(Total);
+  settotal(Math.round(Total * 100) / 100);
 }, [products]);
 
 const handleRemoveItem = (id: number) => {

@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { productType } from "../types";
 import { useDispatch } from "react-redux";
 import { addItem } from "../stateMangment/productsSlice";
+import { MdFavorite } from "react-icons/md";
+import { addFavorate } from "../stateMangment/favorateSlice";
+
 
 export default function Product(props: productType) {
   const dispatch = useDispatch();
@@ -48,14 +51,21 @@ export default function Product(props: productType) {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${price}
             </span>
+            <div className="flex justify-center items-center gap-2">
+
+            <button onClick={()=>{
+              dispatch(addFavorate({ title, price, img, description, id,tags,quantity:1 }));
+            }}><MdFavorite/></button>
             <button
               onClick={handlAddItem}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
-               focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center
-                dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
+              className="text-white  bg-black hover:bg-gray-700 focus:ring-4 focus:outline-none
+              focus:ring-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center
+              dark:bg-black dark:hover:bg-white dark:focus:ring-black"
+              >
               Add to cart
             </button>
+              </div>
+
           </div>
         </div>
       </div>

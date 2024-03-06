@@ -9,15 +9,19 @@ interface WishListProps {
 
 
 export default function WishList(props: WishListProps) {
-
-  const [favoriteItems, setFavoriteItems] = useState<productInCartType[]>([]); 
-   const favorits = useSelector((state: StateWishListType) => state.favorate);
-  const Wishlist = useRef<HTMLDivElement>(null);
   const { favorite } = props;
+  const [favoriteItems, setFavoriteItems] = useState<productInCartType[]>([]); 
+
+  const favorits = useSelector((state: StateWishListType) => state.favorate);
+  const Wishlist = useRef<HTMLDivElement>(null);
+
+console.log(favorits, "favorits");
+
   useEffect(() => {
+    setFavoriteItems(favorits);
     if (favorite) {
+    
       Wishlist.current?.classList.remove("hidden");
-      setFavoriteItems(favorits);
     } else {
       Wishlist.current?.classList.add("hidden");
     }

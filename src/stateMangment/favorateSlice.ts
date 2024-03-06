@@ -22,3 +22,5 @@ export const favorateSlice = createSlice({
     },
   }
 });
+export const { addFavorate, removeFavorate } = favorateSlice.actions;
+export default favorateSlice.reducer;
