@@ -28,16 +28,22 @@ export const productSlice = createSlice({
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
-    editItem: (state, action: PayloadAction<productInCartType>) => {
-      const existingItem = state.find(item => item.id === action.payload.id);
+    PlusItem: (state, action: PayloadAction<number>) => {
+      const existingItem = state.find(item => item.id === action.payload);
       if (existingItem) {
-        existingItem.quantity = action.payload.quantity;
+        existingItem.quantity += 1;
       }
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
-    }
+    },
+    minusItem: (state, action: PayloadAction<number>) => {
+      const existingItem = state.find(item => item.id === action.payload);
+      if (existingItem && existingItem.quantity>1) { // Check if quantity is greater than 1
+        existingItem.quantity -= 1;
+      }
+    }, //
   }
 });
 
-export const { addItem, removeItem, editItem } = productSlice.actions;
+export const { addItem, removeItem, PlusItem,minusItem } = productSlice.actions;
 export default productSlice.reducer;

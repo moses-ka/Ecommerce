@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { removeItem } from "../stateMangment/productsSlice";
+import { PlusItem,minusItem, removeItem } from "../stateMangment/productsSlice";
 import { StateType,productInCartType } from "../types";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,13 +16,12 @@ useEffect(() => {
 const handleRemoveItem = (id: number) => {
   dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
 };
-const handlePlus = () => {
-  console.log("plus");
+const handlePlus = (id:number) => {
+  dispatch(PlusItem(id));
 };
-const handleMinus = () => {
-  console.log("minus");
+const handleMinus = (id:number) => {
+  dispatch(minusItem(id));
 }
-console.log(cart , "cart");
   return (
     <>
     <SideBar/>
@@ -70,10 +69,10 @@ console.log(cart , "cart");
                             </dl>
                           </div>
 
-                          <div className="flex flex-1 items-center justify-end gap-2">
+                          <div className="flex flex-1 items-center justify-center  gap-2">
                             
-                           
-                                    <button onClick={handleMinus}>-</button>
+                         
+                              <button className="w-8" onClick={() => handleMinus(item.id)}>-</button>
 
                               <span
                                
@@ -83,7 +82,7 @@ console.log(cart , "cart");
                                 {item.quantity}
                                 
                               </span>
-                              <button onClick={handlePlus}>+</button>
+                              <button className="w-8" onClick={() => handlePlus(item.id)}>+</button>
                             <button
                               onClick={() => {
                                 handleRemoveItem(item.id);
