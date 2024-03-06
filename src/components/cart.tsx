@@ -1,70 +1,31 @@
 import { useEffect, useState } from "react";
-import { editItem, removeItem } from "../stateMangment/productsSlice";
-import { productType, RootState, productInCartType } from "../types";
+import { removeItem } from "../stateMangment/productsSlice";
+import { StateType,productInCartType } from "../types";
 
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
+
 export default function Cart() {
-  const [subtotal, setSubtotal] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [cart, setCart] = useState<Array<productInCartType>>([]); // This is the cart state [item1, item2, ...
-  const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.products); // Accessing products from Redux store
-  useEffect(() => {
-    setCart(products); // Setting cart state to products from Redux store
-  }, [products]);
+const [cart, setCart] = useState<productInCartType[]>([]); // Update the type of cart state
+const dispatch = useDispatch();
+const products = useSelector((state:StateType) => state.products); // Accessing products from Redux store
+useEffect(() => {
+  setCart(products); // Setting cart state to products from Redux store
+}, [products]);
 
-  const handleRemoveItem = (id: number) => {
-    dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
-  };
-  useEffect(() => {
-    let total = 0;
-    cart.map((item: productType) => {
-      const price = item.price;
-      total = Number(price) + total;
-    });
-    setSubtotal(total);
-    let vat = total === 0 ? 0 : 0.17 * total;
-    vat = parseFloat(vat.toFixed(2));
-    setTotal(total + vat);
-  }, [cart]);
-  const handleChange = (id: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const updatedCart = cart.map((item: productInCartType) => {
-      if (item.id === id) {
-        item.quantity = Number(value);
-      }
-      return item;
-    });
-    setCart(updatedCart);
-  };
-const handleMinusClick = (id: number) => () => { //This code defines a function handleMinusClick that takes an id as an argument and returns another function. This returned function updates the cart by decreasing the quantity of the item with the matching id and then updates the cart state and dispatches an action to edit the item
-  const updatedCart = cart.map((item: productInCartType) => {  
-    if (item.id === id) {
-      return { ...item, quantity: Number(item.quantity) - 1 };
-    }
-   
-    return item;
-  });
-  setCart(updatedCart);
-  dispatch(editItem(updatedCart[0]));
+const handleRemoveItem = (id: number) => {
+  dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
 };
-  const handlePlusClick = (id: number) => () => { //This code defines a function handlePlusClick that takes an id as input and returns another function. When the returned function is called, it updates the cart by increasing the quantity of the item with the matching id by 1, and then dispatches an action to edit the item and updates the state with the new cart.
-
-    const updatedCart = cart.map((item: productInCartType) => {
-      if (item.id === id) {
-        return {...item , quantity: Number(item.quantity) + 1 };
-      }
-      return item;
-    });
-   
-    dispatch(editItem(updatedCart[0]));
-    setCart(updatedCart);
-  };
-  
+const handlePlus = () => {
+  console.log("plus");
+};
+const handleMinus = () => {
+  console.log("minus");
+}
+console.log(cart , "cart");
   return (
     <>
-      <SideBar />
+    <SideBar/>
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <div className="mx-auto max-w-3xl">
@@ -74,15 +35,14 @@ const handleMinusClick = (id: number) => () => { //This code defines a function 
               </h1>
             </header>
             <ul className="space-y-4">
-              {cart.length === 0 && (
+              {cart?.length === 0 && (
                 <p className="mt-8 text-center text-gray-600">
                   Your cart is empty
                 </p>
               )}
 
               <div className="mt-8">
-                {cart &&
-                  cart.map((item: productInCartType) => {
+                {cart && cart?.map((item: productInCartType) => {
                     return (
                       <div key={item.id}>
                         <li className="flex items-center gap-4">
@@ -111,44 +71,19 @@ const handleMinusClick = (id: number) => () => { //This code defines a function 
                           </div>
 
                           <div className="flex flex-1 items-center justify-end gap-2">
-                            <div>
-                              <label htmlFor="Quantity" className="sr-only">
-                                {" "}
-                                Quantity{" "}
-                              </label>
+                            
+                           
+                                    <button onClick={handleMinus}>-</button>
 
-                              <div className="flex items-center justify-center p-2 h-8 rounded border border-gray-200">
-                                <button
-                                  type="button"
-                                  className="size-10 leading-10 mr-1 text-gray-600 transition hover:opacity-75"
-                                  onClick={handleMinusClick(item.id)}
-
-                                >
-                                  -
-                                </button>
-
-                                <input
-                                  type="number"
-                                  id="Quantity"
-                                  min="1"
-                                  value={item.quantity}
-                                  onChange={handleChange(item.id)}
-                                  className="w-8 text-center text-gray-900  h-10  border-transparent  [-moz-appearance:_textfield] sm:text-sm 
-                                  [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 
-                                  [&::-webkit-outer-spin-button]:appearance-none"
-                                />
-                                
+                              <span
                                
-                                <button
-                                  type="button"
-                                  className="size-10 ml-1 leading-10 text-gray-600 transition hover:opacity-75"
-                                  onClick={handlePlusClick(item.id)}
-                                >
-                                  +
-                                </button>
-                              </div>
-                            </div>
-
+                                
+                                className="text-gray-900 font-medium text-sm"
+                              >
+                                {item.quantity}
+                                
+                              </span>
+                              <button onClick={handlePlus}>+</button>
                             <button
                               onClick={() => {
                                 handleRemoveItem(item.id);
@@ -185,26 +120,26 @@ const handleMinusClick = (id: number) => () => { //This code defines a function 
                 <dl className="space-y-0.5 text-sm text-gray-700">
                   <div className="flex justify-between">
                     <dt>Subtotal</dt>
-                    <dd>{subtotal} Euro</dd>
+                    <dd>£250</dd>
                   </div>
 
                   <div className="flex justify-between">
                     <dt>VAT</dt>
-                    <dd>0.17 Euro</dd>
+                    <dd>£25</dd>
                   </div>
 
                   <div className="flex justify-between">
                     <dt>Discount</dt>
-                    <dd>0 Euro</dd>
+                    <dd>-£20</dd>
                   </div>
 
                   <div className="flex justify-between !text-base font-medium">
                     <dt>Total</dt>
-                    <dd>{total} Euro</dd>
+                    <dd>£200</dd>
                   </div>
                 </dl>
 
-                {/* <div className="flex justify-end">
+                <div className="flex justify-end">
                   <span className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +160,7 @@ const handleMinusClick = (id: number) => () => { //This code defines a function 
                       2 Discounts Applied
                     </p>
                   </span>
-                </div> */}
+                </div>
 
                 <div className="flex justify-end">
                   <a

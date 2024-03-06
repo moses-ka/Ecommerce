@@ -1,37 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { productType,productInCartType } from '../types';
-const stateFromLocalStorage = localStorage.getItem('reduxBasketState');
- stateFromLocalStorage ? JSON.parse(stateFromLocalStorage) : [] as productInCartType[] // Assuming products is an array of productType
+import { productInCartType } from '../types';
 
+// Retrieve state from local storage or set an empty array
+const stateFromLocalStorage = localStorage.getItem('reduxBasketState');
+const initialState: productInCartType[] = stateFromLocalStorage ? JSON.parse(stateFromLocalStorage) : [];
 
 export const productSlice = createSlice({
   name: 'products',
-  initialState:stateFromLocalStorage ? JSON.parse(stateFromLocalStorage) : [] as productInCartType[], // Assuming products is an array of productType,
+  initialState,
   reducers: {
     addItem: (state, action: PayloadAction<productInCartType>) => {
-      const item = state.products.find( (item: productType) => item.id === action.payload.id);
-      if (item) {
-        item.quantity += 1;
-        localStorage.setItem('reduxBasketState', JSON.stringify(state));
+      const existingItem = state.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        existingItem.quantity += 1;
       } else {
         action.payload.quantity = 1;
-        state.products.push(action.payload);
-        localStorage.setItem('reduxBasketState', JSON.stringify(state));
+        state.push(action.payload);
       }
       // Save updated state to localStorage
+      localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
     removeItem: (state, action: PayloadAction<number>) => {
-      const updatedProducts = state.products.filter( (item: productType) => item.id !== action.payload);
-      state.products = updatedProducts;
+      const index = state.findIndex(item => item.id === action.payload);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
     editItem: (state, action: PayloadAction<productInCartType>) => {
-      const item = state.products.find( (item: productType) => item.id === action.payload.id);
-      if (item) {
-        item.quantity = action.payload.quantity;
-        localStorage.setItem('reduxBasketState', JSON.stringify(state));
+      const existingItem = state.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        existingItem.quantity = action.payload.quantity;
       }
+      // Save updated state to localStorage
+      localStorage.setItem('reduxBasketState', JSON.stringify(state));
     }
   }
 });

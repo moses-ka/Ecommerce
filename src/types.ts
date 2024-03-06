@@ -22,8 +22,8 @@ export interface productInCartType {
   quantity: number;
   
 }
-export interface RootState {
-  productSlice: productType[]
+export interface StateType {
+products: productInCartType[];
 }
 export interface searchResultsType {
   id: number;
