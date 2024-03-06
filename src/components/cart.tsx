@@ -132,7 +132,7 @@ const handleMinus = (id:number) => {
 
                   <div className="flex justify-between">
                     <dt>VAT</dt>
-                    <dd>20%</dd>
+                    <dd>20 %</dd>
                   </div>
 
                   {/* <div className="flex justify-between">

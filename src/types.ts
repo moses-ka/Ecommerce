@@ -25,6 +25,9 @@ export interface productInCartType {
 export interface StateType {
 products: productInCartType[];
 }
+export interface StateWishListType {
+  favorate: productInCartType[];
+}
 export interface searchResultsType {
   id: number;
   title: string;

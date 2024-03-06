@@ -4,9 +4,11 @@ import { BiSolidCartAlt, BiSolidSearchAlt2 } from "react-icons/bi";
 import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
+import WishList from "./WishList";
 export default function SideBar() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const sideBarRef = useRef<HTMLAnchorElement>(null);
   const search = useRef<HTMLInputElement>(null);
   const [results, setResults] = useState([]);
@@ -118,8 +120,11 @@ export default function SideBar() {
                 >
                   <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
                 </button>
-                
-                <MdFavorite className="w-6 h-6 text-black dark:text-white" />
+                <button onClick={() => setFavorite(!favorite)}>
+
+                  <MdFavorite  className="w-6 h-6 text-black dark:text-white" />
+                </button>
+                <WishList favorite={favorite} />
               </div>
             </div>
           </div>

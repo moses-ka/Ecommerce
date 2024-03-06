@@ -3,7 +3,7 @@ import  { StrictMode } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import Hello from './components/Hello';
+import Hello from './components/WishList';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import { createRoot } from 'react-dom/client';
