@@ -11,6 +11,7 @@ const [subtotal, setSubtotal] = useState<number>(0);
 const [total, settotal] = useState<number>(0);
 const dispatch = useDispatch();
 const products = useSelector((state:StateType) => state.products); // Accessing products from Redux store
+console.log(products ,'this is products')
 useEffect(() => {
   setCart(products); // Setting cart state to products from Redux store
   const subTotal = products.reduce((acc, item) => acc + item.price  * item.quantity , 0);
@@ -18,6 +19,7 @@ useEffect(() => {
   const Total = products.reduce((acc, item) => acc + item.price *1.20 * item.quantity , 0);
   settotal(Math.round(Total * 100) / 100);
 }, [products]);
+console.log(cart,'this is cart')
 
 const handleRemoveItem = (id: number) => {
   dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
@@ -172,7 +174,7 @@ const handleMinus = (id:number) => {
                 <div className="flex justify-end">
                   <a
                     href="#"
-                    className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                    className="rounded border bg-white border-black px-5 py-3 text-sm text-black transition hover:ring-1 hover:ring-black "
                   >
                     Checkout
                   </a>

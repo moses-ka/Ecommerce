@@ -19,6 +19,7 @@ export const productSlice = createSlice({
       }
       // Save updated state to localStorage
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
+      return state
     },
     removeItem: (state, action: PayloadAction<number>) => {
       const index = state.findIndex(item => item.id === action.payload);
@@ -29,6 +30,7 @@ export const productSlice = createSlice({
       localStorage.setItem('reduxBasketState', JSON.stringify(state));
     },
     PlusItem: (state, action: PayloadAction<number>) => {
+      
       const existingItem = state.find(item => item.id === action.payload);
       if (existingItem) {
         existingItem.quantity += 1;

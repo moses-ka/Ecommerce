@@ -9,15 +9,20 @@ export const favorateSlice = createSlice({
   initialState,
   reducers: {
     addFavorate: (state, action: PayloadAction<productInCartType>) => {
-      state.push(action.payload);
-      localStorage.setItem('reduxFavorateState', JSON.stringify(state));
-      return state;
+      if (state.find(item => item.id === action.payload.id)) {
+        return state;
+      }else{
+        
+        state.push(action.payload);
+        localStorage.setItem('reduxFavorateState', JSON.stringify(state));
+        return state;
+      }
     },
     removeFavorate: (state, action: PayloadAction<productInCartType>) => {
-      const index = state.findIndex(item => item === action.payload);
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
+
+      state.splice(state.findIndex(item => item.id === action.payload.id), 1);
+      
+
       localStorage.setItem('reduxFavorateState', JSON.stringify(state));
     },
   }

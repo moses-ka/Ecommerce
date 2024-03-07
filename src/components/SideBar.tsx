@@ -100,6 +100,7 @@ export default function SideBar() {
                   action=""
                 ></form>
                 <input
+                  id="searchBar"
                   onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
                   ref={search}
@@ -124,7 +125,7 @@ export default function SideBar() {
 
                   <MdFavorite  className="w-6 h-6 text-black dark:text-white" />
                 </button>
-                <WishList favorite={favorite} />
+                <WishList wishListOpen={favorite} />
               </div>
             </div>
           </div>

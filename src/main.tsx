@@ -3,7 +3,7 @@ import  { StrictMode } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import Hello from './components/WishList';
+
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import { createRoot } from 'react-dom/client';
@@ -21,7 +21,7 @@ root.render(
     <Router>
       <Routes>
        <Route path="/" element={<App />} />
-       <Route path="/hello" element={<Hello />} />
+      
        <Route path="/login" element={<Login/>} />
        <Route path='/signup' element={<SignUp/>} /> 
        <Route path='product/:id' element={<Product/>} />
