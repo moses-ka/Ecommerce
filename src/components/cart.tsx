@@ -39,18 +39,18 @@ const handleMinus = (id:number) => {
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
-              <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
+              <h1 className="text-xl font-bold text-gray-900 dark:text-gray-200 sm:text-3xl">
                 Your Cart
               </h1>
             </header>
             <ul className="space-y-4">
               {cart?.length === 0 && (
-                <p className="mt-8 text-center text-gray-600">
+                <p className="mt-8 text-center text-gray-900 dark:text-gray-200">
                   Your cart is empty
                 </p>
               )}
 
-              <div className="mt-8">
+              <div className="mt-8  text-gray-900 dark:text-gray-200">
                 {cart && cart?.map((item: productInCartType) => {
                     return (
                       <div key={item.id}>
@@ -62,19 +62,19 @@ const handleMinus = (id:number) => {
                           />
 
                           <div>
-                            <h3 className="text-sm text-gray-900">
+                            <h3 className="text-sm">
                               {item.title}
                             </h3>
 
-                            <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                            <dl className="mt-0.5 space-y-px text-[10px]">
                               <div>
-                                <dt className="inline">Size:</dt>
-                                <dd className="inline">XXS</dd>
+                                
+                                <span className="inline">{item.description}</span>
                               </div>
 
                               <div>
-                                <dt className="inline">Color:</dt>
-                                <dd className="inline">White</dd>
+                                <span className="inline">{item.price} €</span>
+                            
                               </div>
                             </dl>
                           </div>
@@ -87,7 +87,7 @@ const handleMinus = (id:number) => {
                               <span
                                
                                 
-                                className="text-gray-900 font-medium text-sm"
+                                className=" font-medium text-sm"
                               >
                                 {item.quantity}
                                 
@@ -97,7 +97,7 @@ const handleMinus = (id:number) => {
                               onClick={() => {
                                 handleRemoveItem(item.id);
                               }}
-                              className="text-gray-600 transition hover:text-red-600"
+                              className=" transition hover:text-red-600"
                             >
                               <span className="sr-only">Remove item</span>
 
@@ -126,10 +126,10 @@ const handleMinus = (id:number) => {
 
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
               <div className="w-screen max-w-lg space-y-4">
-                <dl className="space-y-0.5 text-sm text-gray-700">
+                <dl className="space-y-0.5 text-sm text-gray-900 dark:text-gray-200">
                   <div className="flex justify-between">
                     <dt>Subtotal</dt>
-                    <dd>{subtotal} Euro</dd>
+                    <dd>{subtotal} €</dd>
                   </div>
 
                   <div className="flex justify-between">
@@ -144,7 +144,7 @@ const handleMinus = (id:number) => {
 
                   <div className="flex justify-between !text-base font-medium">
                     <dt>Total</dt>
-                    <dd>{total}</dd>
+                    <dd>{total} €</dd>
                   </div>
                 </dl>
 

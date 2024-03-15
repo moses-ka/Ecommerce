@@ -22,10 +22,10 @@ export default function SearchResults(props: {
     <>
       <div
         ref={ref}
-        className=" absolute hidden top-[4rem]   w-full"
+        className=" absolute hidden top-[4rem] text-gray-900 dark:text-gray-200   w-full"
       >
         <div
-          className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+          className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100 bg-black shadow-lg"
           role="menu"
         >
           <div className="p-2">
@@ -37,11 +37,15 @@ export default function SearchResults(props: {
                     onClick={() => {
                       Navigate(`/product/${item?.id}`);
                     }}
-                    className="block w-full rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-gray-50 hover:text-gray-700"
                     role="menuitem"
                   >
                     <div className="flex justify-between items-center">
-                    <span>{item.title}</span> <span className="text-gray-400">{item.price} Euro</span>
+                    <img
+                        src={"http://127.0.0.1:8000/" + item.img}
+                        alt={"Image + " + item.title}
+                        className="w-10 rounded object-cover"
+                      />                    <span>{item.title}</span> <span className="">{item.price} Euro</span>
                     </div>
                    
                   </button>

@@ -21,11 +21,11 @@ export default function Product(props: productType) {
     <>
       <div
         className="w-full max-w-md bg-white border border-gray-200 rounded shadow
-       dark:bg-gray-800 dark:border-gray-700 "
+       dark:bg-gray-900 dark:border-gray-200 "
       >
         <Link to={`/product/${id}`}>
           <img
-            className=" rounded-t-lg w-full shadow-md border border-black"
+            className=" rounded-t-lg w-full shadow-md "
             src={imgUrl}
             alt="product img"
           />
