@@ -21,8 +21,8 @@ export default function Products() {
   // console.log(data, 'this is data')
   return (  
     <>
-    <div className='p-2 mt-16  focus:translate-x-[16rem]  w-full md:w-[79%]   md:absolute  md:left-64 '>
-      <div className='flex flex-col md:flex-row  justify-center items-center gap-8 flex-wrap'>
+    <div className='p-2 mt-24    w-full  '>
+      <div className='flex flex-col md:flex-row  justify-center items-center gap-6 flex-wrap w-full'>
 
       
             {data?.map((item:productType)=>{

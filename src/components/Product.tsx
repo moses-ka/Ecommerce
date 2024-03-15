@@ -20,7 +20,7 @@ export default function Product(props: productType) {
   return (
     <>
       <div
-        className="w-full max-w-sm bg-white border border-gray-200 rounded shadow
+        className="w-full max-w-md bg-white border border-gray-200 rounded shadow
        dark:bg-gray-800 dark:border-gray-700 "
       >
         <Link to={`/product/${id}`}>

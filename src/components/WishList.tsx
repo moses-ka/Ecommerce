@@ -101,7 +101,7 @@ export default function WishList(props: WishListProps) {
             {wishList &&
               wishList.map((item, index) => {
                 return (
-                  <>
+                  
                     <li key={index} className="flex items-center gap-4">
                       <img
                         src={"http://127.0.0.1:8000/" + item.img}
@@ -160,7 +160,7 @@ export default function WishList(props: WishListProps) {
                         </button>
                       </div>
                     </li>
-                  </>
+                  
                 );
               })}
           </ul>
