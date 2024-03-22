@@ -16,7 +16,7 @@ export default function Product() {
   return (
     <>
     <SideBar/>
-      <section className="text-gray-700 body-font overflow-hidden bg-white">
+      <section className=" text-gray-900 dark:text-gray-200 body-font overflow-hidden bg-gray-900">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -28,7 +28,7 @@ export default function Product() {
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 BRAND NAME
               </h2>
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+              <h1 className=" text-3xl title-font font-medium mb-1">
                 {product?.title}
               </h1>
              
@@ -44,6 +44,7 @@ export default function Product() {
                 </div>
                 <div className="flex ml-6 items-center">
                   <span className="mr-3">Size</span>
+
                   <div className="relative">
                     <select className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-red-500 text-base pl-3 pr-10">
                       <option>SM</option>
@@ -68,13 +69,14 @@ export default function Product() {
                 </div>
               </div>
               <div className="flex">
-                <span className="title-font font-medium text-2xl text-gray-900">
+                <span className="title-font font-medium text-2xl text-gray-900 dark:text-gray-200">
                  {product?.price} $
                 </span>
-                <button className="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">
+                <button
+                 className="flex ml-auto rounded border bg-white border-black px-5 py-3 text-sm text-black transition hover:ring-1 hover:ring-black ">
                   Check Out
                 </button>
-                <button className="rounded-full w-10 h-10 bg-blue-200 p-0 border-0 inline-flex items-center justify-center text-red-800 hover:text-red-500 hover:bg-blue-400 ml-4">
+                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-red-800 hover:text-red-500 hover:bg-gray-300 ml-4">
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
