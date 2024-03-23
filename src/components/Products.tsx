@@ -28,10 +28,15 @@ export default function Products() {
             {data?.map((item:productType)=>{
               
               return <Product key={item.id} 
-              title={item.title} price={item.price}
+               title={item.title} price={item.price}
                img={item.img} id={item.id} 
                description={item.description}
-               tags={item.tags}/>
+               tags={item.tags}
+               sex={item.sex}
+               size={item.size}
+               color={item.color}
+               
+               />
           })}
      </div>  
     </div>

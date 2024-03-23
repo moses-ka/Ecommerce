@@ -5,9 +5,11 @@ import { MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 import WishList from "./WishList";
+import CartList from "./CartList";
 export default function SideBar() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCartListOpen, setIsCartListOpen] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const sideBarRef = useRef<HTMLAnchorElement>(null);
   const search = useRef<HTMLInputElement>(null);
@@ -49,7 +51,7 @@ export default function SideBar() {
   }, [searchValue]);
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b   border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-white border-b   border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <SearchResults results={results} searchBar={isSearchOpen} />
         <div className="px-3 py-3 lg:px-5 lg:pl-3 h-24 flex flex-col  justify-center">
           <div className="flex items-center justify-between">
@@ -116,16 +118,17 @@ export default function SideBar() {
 
                 <button
                   onClick={() => {
-                    Navigate("/cart");
+                    setIsCartListOpen(!isCartListOpen);
                   }}
                 >
                   <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
                 </button>
+                <CartList wishListOpen={favorite} cartListOpen={isCartListOpen} />
                 <button onClick={() => setFavorite(!favorite)}>
 
                   <MdFavorite  className="w-6 h-6 text-black dark:text-white" />
                 </button>
-                <WishList wishListOpen={favorite} />
+                <WishList cartListOpen={isCartListOpen} wishListOpen={favorite} />
               </div>
             </div>
           </div>

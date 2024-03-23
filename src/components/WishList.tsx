@@ -8,10 +8,11 @@ import { StateWishListType, productInCartType } from "../types";
 import { addItem } from "../stateMangment/productsSlice";
 interface WishListProps {
   wishListOpen: boolean;
+  cartListOpen: boolean;
 }
 
 export default function WishList(props: WishListProps) {
-  const { wishListOpen } = props;
+  let { wishListOpen,cartListOpen } = props;
   const [wishList, setWishlist] = useState<productInCartType[]>([]);
 
   const wishListState = useSelector(
@@ -22,7 +23,7 @@ export default function WishList(props: WishListProps) {
 
   useEffect(() => {
     setWishlist(wishListState);
-    if (wishListOpen) {
+    if (wishListOpen&&!cartListOpen) {
       ListRender.current?.classList.remove("hidden");
     } else {
       ListRender.current?.classList.add("hidden");
@@ -70,29 +71,7 @@ export default function WishList(props: WishListProps) {
         role="dialog"
         tabIndex={-1}
       >
-        <button
-          onClick={() => {
-            ListRender.current?.classList.add("hidden");
-          }}
-          className="absolute end-4 top-4 text-gray-600 transition hover:scale-110"
-        >
-          <span className="sr-only">Close cart</span>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="h-5 w-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+        
         {wishList.length === 0 && (
           <h2 className=" text-xl text-center">No items in Wish List</h2>
         )}

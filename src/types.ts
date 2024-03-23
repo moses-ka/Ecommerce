@@ -11,6 +11,9 @@ export interface productType {
   img: string;
   description: string;
   tags: string;
+  sex: string;
+  size: string;
+  color: string;
 }
 export interface productInCartType {
   id: number;
