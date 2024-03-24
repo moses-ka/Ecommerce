@@ -21,8 +21,8 @@ export default function Product(props: productType) {
   return (
     <>
       <div
-        className="w-[20rem] bg-white border border-gray-200 rounded shadow
-       dark:bg-gray-800 dark:border-gray-200 "
+        className="w-[20rem] border border-gray-200 rounded shadow
+       dark:bg-gray-800 dark:border-gray-200 dark:text-white "
       >
         <Link to={`/product/${id}`}>
           <img
@@ -31,10 +31,10 @@ export default function Product(props: productType) {
             alt="product img"
           />
         </Link>
-        <div className="p-4 border border-black">
+        <div className="p-4 border ">
           <Link to={`/product/${id}`}>
             
-            <h4 className="text-xl mt-2 font-semibold tracking-tight text-gray-700 dark:text-white
+            <h4 className="text-xl mt-2 font-semibold tracking-tight
             mb-4">
               {title}
             </h4>
@@ -45,16 +45,16 @@ export default function Product(props: productType) {
             {/* <span className="leading-relaxed text-black h-14 dark:text-white">{description}</span>
             */}
   	        <span className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
-             dark:bg-gray-200 dark:text-gray-800 ">{size}</span>
+             dark:bg-gray-200">{size}</span>
             <span
               className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
-             dark:bg-gray-200 dark:text-gray-800 "
+             dark:bg-gray-200 "
             >
               {tags}
             </span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-700 dark:text-white">
+            <span className="text-3xl font-bold  ">
               ${price}
             </span>
             <div className="flex justify-center items-center gap-4">
@@ -73,13 +73,13 @@ export default function Product(props: productType) {
                   );
                 }}
               >
-                <MdFavorite className='text-black dark:text-white' size="24" />
+                <MdFavorite className='' size="24" />
               </button>
               <button
                 onClick={handlAddItem}
                
               >
-                <BiSolidCartAlt size='24' className='text-black dark:text-white'/>
+                <BiSolidCartAlt size='24' className=''/>
                 
               </button>
             </div>

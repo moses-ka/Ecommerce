@@ -22,10 +22,11 @@ export default function SearchResults(props: {
     <>
       <div
         ref={ref}
-        className=" absolute hidden top-[4rem] text-gray-900 dark:text-gray-200   w-full"
+        className=" absolute hidden top-[4rem] text-gray-900 dark:text-white   w-full"
       >
         <div
-          className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100 bg-black shadow-lg"
+          className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100
+           bg-gray-800 shadow-lg"
           role="menu"
         >
           <div className="p-2">

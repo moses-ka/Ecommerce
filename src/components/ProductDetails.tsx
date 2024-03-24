@@ -3,7 +3,13 @@ import { useState,useEffect } from 'react';
 import {productType} from '../types'
 import axios from 'axios';
 import SideBar from './SideBar';
+import { MdFavorite } from 'react-icons/md';
+import { addItem } from '../stateMangment/productsSlice';
+import { useDispatch } from 'react-redux';
+import { addFavorate } from '../stateMangment/favorateSlice';
+
 export default function Product() {
+  const dispatch = useDispatch()
   const {id} = useParams()
   const [product, setProduct] = useState<productType>();
   useEffect(() => {
@@ -16,7 +22,7 @@ export default function Product() {
   return (
     <>
     <SideBar/>
-      <section className=" text-gray-900 dark:text-gray-200 body-font overflow-hidden bg-gray-800">
+      <section className=" mt-6 text-gray-900 dark:text-gray-200 body-font overflow-hidden bg-gray-800">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -30,35 +36,40 @@ export default function Product() {
                 {product?.title}
               </h1>
              
-              <p className="leading-relaxed">
+              <p className="leading-relaxed w-5/6">
                 {product?.description}
               </p>
-              <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-                <div className="flex ml-6 items-center">
-                  <span className="mr-3">{product?.size}</span>
-
+              <div className="flex mt-6 items-center pb-5 border-b-2 justify-between border-gray-200 mb-5">
+                
+                  <span className="mr-3 text-center">Size : {product?.size}</span>
+                  <span>{product?.tags}</span>
                   
-                </div>
+            
               </div>
-              <div className="flex">
+              <div className="flex justify-center items-center ">
                 <span className="title-font font-medium text-2xl text-gray-900 dark:text-gray-200">
                  {product?.price} $
                 </span>
-                <button
-                 className="flex ml-auto rounded border bg-white border-black px-5 py-3 text-sm text-black transition hover:ring-1 hover:ring-black ">
-                  Check Out
-                </button>
-                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-red-800 hover:text-red-500 hover:bg-gray-300 ml-4">
-                  <svg
-                    fill="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                  </svg>
+                  <button
+                   onClick={() => {
+                    if (product)
+                    dispatch(addFavorate({title:product?.title,price:product?.price,
+                      img:product?.img,description:product?.description,
+                      id:product?.id,tags:product?.tags,quantity:1}))
+                   }}
+                   className=" ml-28">
+                  <MdFavorite size='24'/>
+                  </button>
+                <button 
+                onClick={() => {
+                  if (product)
+                  dispatch(addItem({title:product?.title,price:product?.price,
+                img:product?.img,description:product?.description,
+                id:product?.id,tags:product?.tags,quantity:1}))
+                }}
+                 className="flex  ml-4 rounded border bg-white border-black px-5 py-3 text-sm
+                  text-black transition hover:ring-1 hover:ring-black ">
+                  add to cart
                 </button>
               </div>
             </div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFavorate } from "../stateMangment/favorateSlice";
-import { BsFillBasket2Fill } from "react-icons/bs";
+import { BiSolidCartAlt } from "react-icons/bi";
 
 import { StateWishListType, productInCartType } from "../types";
 import { addItem } from "../stateMangment/productsSlice";
@@ -66,7 +66,9 @@ export default function WishList(props: WishListProps) {
     <>
       <div
         ref={ListRender}
-        className=" hidden absolute right-4 md:absolute md:right-8  top-24 w-4/6 max-w-sm border border-gray-600 bg-white rounded px-4 py-8 sm:px-6 lg:px-8"
+        className=" hidden absolute right-4 md:absolute md:right-8  top-24 w-4/6 max-w-sm border
+         border-gray-600 text-gray-900 dark:text-white
+         bg-white dark:bg-gray-800 rounded px-4 py-8 sm:px-6 lg:px-8"
         aria-modal="true"
         role="dialog"
         tabIndex={-1}
@@ -89,9 +91,9 @@ export default function WishList(props: WishListProps) {
                       />
 
                       <div>
-                        <h3 className="text-sm text-gray-900">{item.title}</h3>
+                        <h3 className="text-sm ">{item.title}</h3>
 
-                        <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                        <dl className="mt-0.5 space-y-px text-[10px] ">
                           <div>
                             <dt className="inline">Price </dt>
                             <dd className="inline"> {item.price}</dd>
@@ -110,15 +112,15 @@ export default function WishList(props: WishListProps) {
                           onClick={() => {
                             handleAddingToCart(item);
                           }}
-                          className="text-gray-600 transition hover:text-gray-900"
+                          className=" transition hover:text-gray-600"
                         >
-                          <BsFillBasket2Fill size="22" />
+                          <BiSolidCartAlt size="24" />
                         </button>
                         <button
                           onClick={() => {
                             handleRemoveItem(item);
                           }}
-                          className="text-gray-600 transition hover:text-red-600"
+                          className=" transition hover:text-red-600"
                         >
                           <span className="sr-only">Remove item</span>
 
@@ -147,7 +149,7 @@ export default function WishList(props: WishListProps) {
           <div className="space-y-4 text-center">
             <Link
               to="/cart"
-              className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
+              className="block rounded border border-gray-600 px-5 py-3 text-sm  transition hover:ring-1 hover:ring-gray-400"
             >
               View my cart
             </Link>
