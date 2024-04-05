@@ -36,21 +36,21 @@ const handleMinus = (id:number) => {
     <>
     <SideBar/>
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 text-gray-900 dark:text-gray-200">
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
-              <h1 className="text-xl font-bold text-gray-900 dark:text-gray-200 sm:text-3xl">
+              <h1 className="text-xl font-bold   sm:text-3xl">
                 Your Cart
               </h1>
             </header>
             <ul className="space-y-4">
               {cart?.length === 0 && (
-                <p className="mt-8 text-center text-gray-900 dark:text-gray-200">
+                <p className="mt-8 text-center ">
                   Your cart is empty
                 </p>
               )}
 
-              <div className="mt-8  text-gray-900 dark:text-gray-200">
+              <div className="mt-8  ">
                 {cart && cart?.map((item: productInCartType) => {
                     return (
                       <div key={item.id}>
@@ -126,7 +126,7 @@ const handleMinus = (id:number) => {
 
             <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
               <div className="w-screen max-w-lg space-y-4">
-                <dl className="space-y-0.5 text-sm text-gray-900 dark:text-gray-200">
+                <dl className="space-y-0.5 text-sm  ">
                   <div className="flex justify-between">
                     <dt>Subtotal</dt>
                     <dd>{subtotal} €</dd>
