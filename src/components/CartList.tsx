@@ -39,13 +39,13 @@ export default function CartList(props: { cartListOpen: boolean , wishListOpen: 
         >
          
           {cartList.length === 0 && (
-            <h2 className=" text-xl text-center">No items in Wish List</h2>
+            <h2 className=" text-xl text-center">No items in Cart List</h2>
           )}
           <div className="mt-4 space-y-6">
             <ul className="space-y-4">
               {cartList &&
                 cartList.map((item, index) => {
-                  return (
+                  return (  
                     
                       <li key={index} className="flex items-center gap-4">
                         <img

@@ -21,8 +21,8 @@ export default function Product(props: productType) {
   return (
     <>
       <div
-        className="w-[20rem] border border-gray-200 rounded shadow
-       dark:bg-gray-800 dark:border-gray-200 dark:text-white "
+        className="w-[20rem] border border-gray-200 rounded shadow bg-white
+       dark:bg-gray-800 dark:border-gray-200  dark:text-white "
       >
         <Link to={`/product/${id}`}>
           <img
