@@ -18,11 +18,11 @@ export default function Product() {
   }, [id])
 
   const serverUrl = 'http://127.0.0.1:8000'
-
+console.log(product)
   return (
     <>
     <SideBar/>
-      <section className=" mt-6 text-gray-900 dark:text-gray-200 body-font overflow-hidden bg-gray-800">
+      <section className=" mt-6 text-gray-200 dark:text-gray-200 body-font overflow-hidden ">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img

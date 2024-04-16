@@ -38,3 +38,9 @@ export interface searchResultsType {
   img: string;
   description: string;
 }
+export interface MouseImageTrailProps {
+  children: React.ReactNode;
+  images: string[];
+  renderImageBuffer: number;
+  rotationRange: number;
+}
