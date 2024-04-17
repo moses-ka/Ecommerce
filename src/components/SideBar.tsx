@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 import WishList from "./WishList";
 import CartList from "./CartList";
+import { motion } from "framer-motion";
 export default function SideBar() {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -82,13 +83,16 @@ export default function SideBar() {
               </button> */}
 
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                <button
+                <motion.button
+                 whileTap={{ scale: 0.7 }}
+                 transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+ 
                   onClick={() => {
                     Navigate("/");
                   }}
                 >
                   Logo
-                </button>
+                </motion.button>
               </span>
             </div>
             <div className="flex items-center">
@@ -110,24 +114,35 @@ export default function SideBar() {
                   placeholder="Search"
                   className="border-2 hidden border-gray-200 rounded-lg p-1 "
                 />
-                <button onClick={Search}>
+                <motion.button 
+                 whileTap={{ scale: 0.7 }}
+                 transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+ 
+                onClick={Search}>
                   <BiSolidSearchAlt2 className="w-6 h-6 text-black dark:text-white" />
-                </button>
+                </motion.button>
 
                 <GoPersonFill className="w-6 h-6 text-black dark:text-white" />
 
-                <button
+                <motion.button
+                 whileTap={{ scale: 0.7 }}
+                 transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+ 
                   onClick={() => {
                     setIsCartListOpen(!isCartListOpen);
                   }}
                 >
                   <BiSolidCartAlt className="w-6 h-6 text-black dark:text-white" />
-                </button>
+                </motion.button>
                 <CartList wishListOpen={favorite} cartListOpen={isCartListOpen} />
-                <button onClick={() => setFavorite(!favorite)}>
+                <motion.button onClick={() => setFavorite(!favorite)}
+                 whileTap={{ scale: 0.7 }}
+                 transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+ 
+                >
 
                   <MdFavorite  className="w-6 h-6 text-black dark:text-white" />
-                </button>
+                </motion.button>
                 <WishList cartListOpen={isCartListOpen} wishListOpen={favorite} />
               </div>
             </div>

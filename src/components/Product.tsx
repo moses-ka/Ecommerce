@@ -5,6 +5,7 @@ import { addItem } from "../stateMangment/productsSlice";
 import { MdFavorite } from "react-icons/md";
 import { addFavorate } from "../stateMangment/favorateSlice";
 import { BiSolidCartAlt } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 export default function Product(props: productType) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function Product(props: productType) {
     dispatch(
       addItem({ title, price, img, description, id, tags, quantity: 1 })
     );
+
   };
 
   return (
@@ -58,7 +60,7 @@ export default function Product(props: productType) {
               ${price}
             </span>
             <div className="flex justify-center items-center gap-4">
-              <button
+              <motion.button
                 onClick={() => {
                   dispatch(
                     addFavorate({
@@ -72,16 +74,22 @@ export default function Product(props: productType) {
                     })
                   );
                 }}
+                whileTap={{ scale: 0.7 }}
+                transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+
               >
                 <MdFavorite className='' size="24" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.7 }}
+                transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+
                 onClick={handlAddItem}
                
               >
                 <BiSolidCartAlt size='24' className=''/>
                 
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>

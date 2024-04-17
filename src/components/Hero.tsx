@@ -1,6 +1,7 @@
-import { useAnimate } from "framer-motion";
+import { useAnimate,motion, spring } from "framer-motion";
 import { useRef, MouseEvent } from "react";
 import {MouseImageTrailProps} from "../types";
+import { FaMousePointer } from "react-icons/fa";
 
 
 export const Hero: React.FC = () => {
@@ -12,22 +13,33 @@ export const Hero: React.FC = () => {
         `http://127.0.0.1:8000/media/Naruto_Tshirt_white_hMrdWqt.png`,
         `http://127.0.0.1:8000//media/Bleach.png`,
         `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white_vhK5Wqu.png`,
-        "http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png",
-        'http://127.0.0.1:8000/media/full_metal_white.png',
-        "http://127.0.0.1:8000//media/One_punch_man_white.png",
-        "http://127.0.0.1:8000//media/JJK_toji_stand_white.png",
-        "http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png",
+        'http://127.0.0.1:8000//media/Naruto_Tshirt_e5PxsWR.png',
+      
 
 
 
       ]}
     >
       <section className="flex justify-between h-[460px] w-full place-content-center bg-white overflow-hidden ">
-        <div className=" ml-20 flex justify-center items-center">
-          <p className="flex items-center justfy-center gap-2 text-3xl font-bold uppercase text-black">
-            New collection
-            <span className="text-xl">is here</span>
-          </p>
+        <div className=" ml-20 flex  flex-col justify-evenly items-center text-black">
+        <motion.p
+          initial={{ x: 0 }}
+          animate={{ x: "calc(100vw - 50%)" }}
+
+>
+  New collection <FaMousePointer size={16} />
+</motion.p>
+<motion.p
+  initial={{ x: 0, y: 0 }} // Initial position
+  animate={{
+    x: [1500,600,500,400, -1500],
+    y: [0, 0, 0, 0],
+    transition: { duration: 5, repeat: Infinity }
+  }}
+  className="flex items-center justify-center gap-2 text-xl duration-1000 md:text-4xl font-bold uppercase"
+>
+  New collection <FaMousePointer size={16} />
+</motion.p>
         </div>
       </section>
     </MouseImageTrail>

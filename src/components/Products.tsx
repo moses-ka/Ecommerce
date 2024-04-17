@@ -17,7 +17,7 @@ export default function Products() {
    
   }, [])
 
-  // console.log(user , 'this is user state ')
+   console.log(user , 'this is user state ')
   console.log(data, 'this is data')
   return (  
     <>
