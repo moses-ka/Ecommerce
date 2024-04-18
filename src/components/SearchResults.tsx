@@ -23,10 +23,11 @@ export default function SearchResults(props: {
       <div
         ref={ref}
         className=" absolute hidden top-[4rem] text-gray-900 dark:text-white   w-full"
+        tabIndex={1}
       >
         <div
           className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100
-           bg-gray-800 shadow-lg"
+          dark:bg-[#19191a] shadow-lg "
           role="menu"
         >
           <div className="p-2">

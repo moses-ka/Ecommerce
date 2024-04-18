@@ -81,7 +81,7 @@ export default function WishList(props: WishListProps) {
         ref={ListRender}
         className=" hidden absolute right-4 md:absolute md:right-8  top-24 w-4/6 max-w-sm border
          border-gray-600 text-gray-900 dark:text-white
-         bg-white dark:bg-gray-800 rounded px-4 py-8 sm:px-6 lg:px-8"
+         bg-white dark:bg-[#393947] rounded px-4 py-8 sm:px-6 lg:px-8"
         aria-modal="true"
         role="dialog"
         tabIndex={-1}

@@ -51,10 +51,11 @@ export default function CartList(props: { cartListOpen: boolean, wishListOpen: b
           transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
           style={{ position: "absolute", top: 0 }}
           ref={ListRender}
-          className="hidden absolute right-4 md:absolute md:right-8 top-24 w-4/6 max-w-sm border border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded px-4 py-8 sm:px-6 lg:px-8"
+          className="hidden absolute right-4 md:absolute md:right-8 top-24 w-4/6 max-w-sm border border-gray-600 bg-white
+           dark:bg-[#393947] text-gray-900 dark:text-white rounded px-4 py-8 sm:px-6 lg:px-8"
           aria-modal="true"
           role="dialog"
-          tabIndex={-1}
+          tabIndex={2}
           
           >
             {cartList.length === 0 && (

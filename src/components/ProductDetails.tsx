@@ -23,11 +23,11 @@ console.log(product)
     <>
     <SideBar/>
       <section className=" mt-6 text-gray-200 dark:text-gray-200 body-font overflow-hidden ">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="flex justify-evenly items-center px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt={`product Image ${product?.title}`}
-              className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+              className="lg:w-2/6 w-full object-cover object-center rounded border border-gray-200"
               src={`${serverUrl}${product?.img}`}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

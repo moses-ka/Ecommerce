@@ -1,4 +1,4 @@
-import { useAnimate,motion, spring } from "framer-motion";
+import { useAnimate,motion } from "framer-motion";
 import { useRef, MouseEvent } from "react";
 import {MouseImageTrailProps} from "../types";
 import { FaMousePointer } from "react-icons/fa";
@@ -21,25 +21,37 @@ export const Hero: React.FC = () => {
       ]}
     >
       <section className="flex justify-between h-[460px] w-full place-content-center bg-white overflow-hidden ">
-        <div className=" ml-20 flex  flex-col justify-evenly items-center text-black">
+        <div className=" ml-20 flex flex-col justify-evenly max-w-full  text-black">
+          
         <motion.p
-          initial={{ x: 0 }}
-          animate={{ x: "calc(100vw - 50%)" }}
+      initial={{ x: "-100vw" }} // Initial position, off-screen to the left
+      animate={{
+        x: ["-100vw","100vw"], // Move to the right edge of the screen
+        transition: { duration:9, repeat: Infinity,delay:0.1}
+      }}
+      className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-auto p-4 uppercase text-3xl
+       md:text-4xl lg:text-6xl  "
+    >
+      <div className="flex items-center justify-center gap-4">
 
->
-  New collection <FaMousePointer size={16} />
-</motion.p>
-<motion.p
-  initial={{ x: 0, y: 0 }} // Initial position
-  animate={{
-    x: [1500,600,500,400, -1500],
-    y: [0, 0, 0, 0],
-    transition: { duration: 5, repeat: Infinity }
-  }}
-  className="flex items-center justify-center gap-2 text-xl duration-1000 md:text-4xl font-bold uppercase"
->
-  New collection <FaMousePointer size={16} />
-</motion.p>
+      <p>New collection </p> <FaMousePointer size={26} />
+      </div>
+    </motion.p>
+       
+  <motion.p
+      initial={{ x: "-100vw" }} 
+      animate={{
+        x: ["-100vw","100vw"], 
+        transition: { duration:7, repeat: Infinity,delay:0.1}
+      }}
+      className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+    >
+      <div className="flex items-center justify-center  gap-4 text-3xl
+       md:text-4xl lg:text-6xl w-full">
+
+      <p> new collection </p> <FaMousePointer size={26} />
+      </div>
+    </motion.p>
         </div>
       </section>
     </MouseImageTrail>
