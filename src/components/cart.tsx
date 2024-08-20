@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { PlusItem,minusItem, removeItem } from "../stateMangment/productsSlice";
 import { StateType,productInCartType } from "../types";
-
+import { userType } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
 
@@ -10,8 +10,10 @@ const [cart, setCart] = useState<productInCartType[]>([]); // Update the type of
 const [subtotal, setSubtotal] = useState<number>(0);
 const [total, settotal] = useState<number>(0);
 const dispatch = useDispatch();
-const products = useSelector((state:StateType) => state.products); // Accessing products from Redux store
-console.log(products ,'this is products')
+const products = useSelector((state:StateType) => state.products);
+ // Accessing products from Redux store
+ const user = useSelector((state: { user:userType }) => state.user);
+
 useEffect(() => {
   setCart(products); // Setting cart state to products from Redux store
   const subTotal = products.reduce((acc, item) => acc + item.price  * item.quantity , 0);
@@ -19,7 +21,7 @@ useEffect(() => {
   const Total = products.reduce((acc, item) => acc + item.price *1.20 * item.quantity , 0);
   settotal(Math.round(Total * 100) / 100);
 }, [products]);
-console.log(cart,'this is cart')
+
 
 const handleRemoveItem = (id: number) => {
   dispatch(removeItem(id)); // Dispatching action to remove item from Redux store
@@ -30,8 +32,12 @@ const handlePlus = (id:number) => {
 const handleMinus = (id:number) => {
   dispatch(minusItem(id));
 }
-// console.log(subtotal , "subtotal");
-// console.log(cart , "cart");
+const HandleCheckout = () => {
+  console.log(products , "products");
+  console.log(total , "total");
+  console.log(user , "user");
+}
+
   return (
     <>
     <SideBar/>
@@ -148,36 +154,17 @@ const handleMinus = (id:number) => {
                   </div>
                 </dl>
 
-                {/* <div className="flex justify-end">
-                  <span className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="-ms-1 me-1.5 h-4 w-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"
-                      />
-                    </svg>
-
-                    <p className="whitespace-nowrap text-xs">
-                      2 Discounts Applied
-                    </p>
-                  </span>
-                </div> */}
+               
 
                 <div className="flex justify-end">
-                  <a
-                    href="#"
+                  <button
+                    
+                    
                     className="rounded border bg-white border-black px-5 py-3 text-sm text-black transition hover:ring-1 hover:ring-black "
+                    onClick={HandleCheckout}
                   >
                     Checkout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

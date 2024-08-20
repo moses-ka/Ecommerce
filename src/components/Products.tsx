@@ -17,8 +17,7 @@ export default function Products() {
    
   }, [])
 
-   console.log(user , 'this is user state ')
-  console.log(data, 'this is data')
+  
   return (  
     <>
     <div className='p-2 mt-24    w-full  '>

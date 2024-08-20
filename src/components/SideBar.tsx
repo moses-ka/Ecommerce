@@ -20,7 +20,6 @@ export default function SideBar() {
   const [searchValue, setSearchValue] = useState("");
   const [isUserListOpen, setUserListOpen] = useState(false);
   const Navigate = useNavigate();
-  console.log(isUserListOpen , "isUserListOpen");
  
   const Search = () => {
     setIsSearchOpen(!isSearchOpen);

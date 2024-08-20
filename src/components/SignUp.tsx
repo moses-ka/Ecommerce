@@ -29,16 +29,15 @@ export default function SignUp() {
             password:password
         })
         .then(res=>console.log(res,'this is res'))
-        .catch(err=>console.log(err))
+        .catch(err=>console.log(err,'this is err'))
       }
     const HandleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        console.log(username , email , password , confirmPassword , 'this is data')
+      
         if (password !== confirmPassword){
             setErrorMsg("Password does not match")
         }
-        else{
-            console.log('all good')}
+      
         send()
     }
   return (

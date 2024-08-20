@@ -16,7 +16,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: { user: userType }) => state.user);
- console.log(user)
+
   useEffect(()=>{
     if (user.logging !== false){
       navigate('/')
@@ -37,7 +37,7 @@ export default function Login() {
         navigate('/');
       })
       .catch((err) => {
-        console.log(err);
+        
         setErrorMessage('Invalid Entry');
       });
 
@@ -45,7 +45,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log('handle submit been called');
+   
     send(); // Send the API request
   };
 

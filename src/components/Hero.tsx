@@ -26,49 +26,38 @@ export const Hero: React.FC = () => {
       <section className="flex justify-between h-[460px] w-full place-content-center bg-white overflow-hidden ">
         <div className=" ml-20 flex flex-col justify-evenly max-w-full  text-black">
           
-        <motion.p
-      initial={{ x: "-100vw" }} // Initial position, off-screen to the left
-      animate={{
-        x: ["-100vw","100vw"], // Move to the right edge of the screen
-        transition: { duration:9, repeat: Infinity,delay:0.1}
-      }}
-      className="absolute top-10 w-full h-auto p-4 uppercase text-3xl
-       md:text-4xl lg:text-6xl  "
-    >
-      <div className="flex items-center justify-center gap-4">
-
-      <p>New collection </p> <GiClick size={26} />
-      </div>
-    </motion.p> 
        
-  <motion.p
+       
+  
+    <div className="flex   gap-4 text-3xl
+       md:text-4xl lg:text-6xl w-full">
+    <motion.div
       initial={{ x: "-100vw" }} 
       animate={{
         x: ["-100vw","100vw"], 
         transition: { duration:9, repeat: Infinity,delay:0.1}
       }}
-      className="absolute  transform bottom-12  w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+      className="absolute top-20  transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
     >
-      <div className="flex items-center justify-center  gap-4 text-3xl
-       md:text-4xl lg:text-6xl w-full">
 
-      <p> new collection </p> <GiClick size={26} />
-      </div>
-    </motion.p>
-    <motion.p
-      initial={{ x: "-100vw" }} 
+
+      <p className="inline text-4xl"> new collection </p> <GiClick className="inline" size={26} />
+     
+    </motion.div>
+    <motion.div
+      initial={{ x: "100vw" }} 
       animate={{
-        x: ["-100vw","100vw"], 
-        transition: { duration:9, repeat: Infinity,delay:0.1}
+        x: ["100vw","-100vw"], 
+        transition: { duration:12, repeat: Infinity,delay:0.1}
       }}
-      className="absolute  transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+      className="absolute   transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
     >
-      <div className="flex items-center justify-center  gap-4 text-3xl
-       md:text-4xl lg:text-6xl w-full">
 
-      <p> new collection </p> <GiClick size={26} />
-      </div>
-    </motion.p>
+
+      <p className="inline text-4xl"> new collection </p> <GiClick className="inline" size={26} />
+     
+    </motion.div>
+    </div>
         </div>
       </section>
     </MouseImageTrail>
