@@ -39,7 +39,7 @@ export default function SearchResults(props: {
                     onClick={() => {
                       Navigate(`/product/${item?.id}`);
                     }}
-                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-gray-50 hover:text-gray-700"
+                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-[#858592] bg-white hover:text-gray-700"
                     role="menuitem"
                   >
                     <div className="flex justify-between items-center">

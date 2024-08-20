@@ -7,13 +7,10 @@ import { BiSolidCartAlt } from "react-icons/bi";
 import { StateWishListType, productInCartType } from "../types";
 import { addItem } from "../stateMangment/productsSlice";
 import { motion, AnimatePresence } from "framer-motion";
-interface WishListProps {
-  wishListOpen: boolean;
-  cartListOpen: boolean;
-}
 
-export default function WishList(props: WishListProps) {
-  let { wishListOpen,cartListOpen } = props;
+
+export default function WishList() {
+ const  wishListOpen = true
   const [wishList, setWishlist] = useState<productInCartType[]>([]);
 
   const wishListState = useSelector(
@@ -24,11 +21,7 @@ export default function WishList(props: WishListProps) {
 
   useEffect(() => {
     setWishlist(wishListState);
-    if (wishListOpen&&!cartListOpen) {
-      ListRender.current?.classList.remove("hidden");
-    } else {
-      ListRender.current?.classList.add("hidden");
-    }
+   
   }, [ListRender, wishListOpen, wishListState]);
   const handleRemoveItem = (item: productInCartType) => {
     // Create a copy of the wishList array
@@ -66,7 +59,7 @@ export default function WishList(props: WishListProps) {
   return (
     <>
     <AnimatePresence>
-       {wishListOpen && (
+      
 
       
       <motion.div
@@ -79,14 +72,14 @@ export default function WishList(props: WishListProps) {
       
       
         ref={ListRender}
-        className=" hidden absolute right-4 md:absolute md:right-8  top-24 w-4/6 max-w-sm border
+        className="  absolute right-4 md:absolute md:right-8  top-24 w-4/6 max-w-sm border
          border-gray-600 text-gray-900 dark:text-white
          bg-white dark:bg-[#393947] rounded px-4 py-8 sm:px-6 lg:px-8"
         aria-modal="true"
         role="dialog"
         tabIndex={-1}
       >
-        
+        <h2>Wish List</h2>
         {wishList.length === 0 && (
           <h2 className=" text-xl text-center">No items in Wish List</h2>
         )}
@@ -177,7 +170,7 @@ export default function WishList(props: WishListProps) {
           </div>
         </div>
       </motion.div>
-       )}
+     
       </AnimatePresence>
     </>
   );

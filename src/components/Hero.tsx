@@ -1,8 +1,7 @@
 import { useAnimate,motion } from "framer-motion";
 import { useRef, MouseEvent } from "react";
 import {MouseImageTrailProps} from "../types";
-import { FaMousePointer } from "react-icons/fa";
-
+import { GiClick } from "react-icons/gi";
 
 export const Hero: React.FC = () => {
   return (
@@ -14,6 +13,10 @@ export const Hero: React.FC = () => {
         `http://127.0.0.1:8000//media/Bleach.png`,
         `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white_vhK5Wqu.png`,
         'http://127.0.0.1:8000//media/Naruto_Tshirt_e5PxsWR.png',
+        'http://127.0.0.1:8000/media/JJK_toji_stand_white.png',
+        'http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png',
+        'http://127.0.0.1:8000/media/One_punch_man_white.png',
+        'http://127.0.0.1:8000/media/Berzerk_stand.png',
       
 
 
@@ -29,27 +32,41 @@ export const Hero: React.FC = () => {
         x: ["-100vw","100vw"], // Move to the right edge of the screen
         transition: { duration:9, repeat: Infinity,delay:0.1}
       }}
-      className="absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-auto p-4 uppercase text-3xl
+      className="absolute top-10 w-full h-auto p-4 uppercase text-3xl
        md:text-4xl lg:text-6xl  "
     >
       <div className="flex items-center justify-center gap-4">
 
-      <p>New collection </p> <FaMousePointer size={26} />
+      <p>New collection </p> <GiClick size={26} />
       </div>
-    </motion.p>
+    </motion.p> 
        
   <motion.p
       initial={{ x: "-100vw" }} 
       animate={{
         x: ["-100vw","100vw"], 
-        transition: { duration:7, repeat: Infinity,delay:0.1}
+        transition: { duration:9, repeat: Infinity,delay:0.1}
       }}
-      className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+      className="absolute  transform bottom-12  w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
     >
       <div className="flex items-center justify-center  gap-4 text-3xl
        md:text-4xl lg:text-6xl w-full">
 
-      <p> new collection </p> <FaMousePointer size={26} />
+      <p> new collection </p> <GiClick size={26} />
+      </div>
+    </motion.p>
+    <motion.p
+      initial={{ x: "-100vw" }} 
+      animate={{
+        x: ["-100vw","100vw"], 
+        transition: { duration:9, repeat: Infinity,delay:0.1}
+      }}
+      className="absolute  transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+    >
+      <div className="flex items-center justify-center  gap-4 text-3xl
+       md:text-4xl lg:text-6xl w-full">
+
+      <p> new collection </p> <GiClick size={26} />
       </div>
     </motion.p>
         </div>

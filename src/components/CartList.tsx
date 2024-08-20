@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { StateType } from "../types";
@@ -6,44 +6,27 @@ import { Link } from "react-router-dom";
 import { removeItem } from "../stateMangment/productsSlice";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function CartList(props: { cartListOpen: boolean, wishListOpen: boolean }) {
-  let { cartListOpen, wishListOpen } = props;
-  const [listIsVisible, setListIsVisible] = useState <Boolean>();
+export default function CartList() {
+  
 
   const ListRender = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const cartList = useSelector((state: StateType) => state.products);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setListIsVisible(cartListOpen);
-    }, 50); // Debounce the state update with a 100ms delay
+  
 
-    return () => clearTimeout(timeoutId); // Clean up the timeout on unmount
-
-  }, [cartListOpen, cartList]);
-
-  useEffect(() => {
-    if (listIsVisible !== null) {
-      if (listIsVisible && !wishListOpen) {
-        ListRender.current?.classList.remove("hidden");
-      } else {
-        ListRender.current?.classList.add("hidden");
-      }
-    }
-  }, [listIsVisible, wishListOpen]);
+ 
 
   const handleRemoveItem = (id: number) => {
     dispatch(removeItem(id));
   };
 
-  console.log(cartListOpen, 'cartListOpen');
-  console.log(listIsVisible, 'listIsVisible');
+  
 
   return (
     <>
       <AnimatePresence>
-        {listIsVisible && (
+        
           <motion.div
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 100, opacity: 1 }}
@@ -51,13 +34,14 @@ export default function CartList(props: { cartListOpen: boolean, wishListOpen: b
           transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
           style={{ position: "absolute", top: 0 }}
           ref={ListRender}
-          className="hidden absolute right-4 md:absolute md:right-8 top-24 w-4/6 max-w-sm border border-gray-600 bg-white
+          className=" absolute right-4 md:absolute md:right-8 top-24 w-4/6 max-w-sm border border-gray-600 bg-white
            dark:bg-[#393947] text-gray-900 dark:text-white rounded px-4 py-8 sm:px-6 lg:px-8"
           aria-modal="true"
           role="dialog"
           tabIndex={2}
           
           >
+            <h2>Cart</h2>
             {cartList.length === 0 && (
               <h2 className="text-xl text-center">No items in Cart List</h2>
             )}
@@ -98,7 +82,7 @@ export default function CartList(props: { cartListOpen: boolean, wishListOpen: b
               </div>
             </div>
           </motion.div>
-        )}
+       
       </AnimatePresence>
     </>
   );

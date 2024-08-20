@@ -36,7 +36,7 @@ const handleMinus = (id:number) => {
     <>
     <SideBar/>
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 text-gray-200 dark:text-gray-200">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 text-black dark:text-gray-200">
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
               <h1 className="text-xl font-bold   sm:text-3xl">

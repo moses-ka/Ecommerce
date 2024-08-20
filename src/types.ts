@@ -1,8 +1,8 @@
 
 export interface userType {
-  user: "";
+  user_name: "";
   token: "";
-  loggedIn: false;
+  logging: false;
 }
 export interface productType {
   id: number;
