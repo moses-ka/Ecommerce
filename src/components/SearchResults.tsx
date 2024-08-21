@@ -23,22 +23,23 @@ export default function SearchResults(props: {
       <div
         ref={ref}
         className=" absolute hidden top-[4rem] text-gray-900 dark:text-white   w-full"
+        tabIndex={1}
       >
         <div
           className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100
-           bg-gray-800 shadow-lg"
+          dark:bg-[#19191a] shadow-lg "
           role="menu"
         >
           <div className="p-2">
-            {search.map((item: productType) => {
+            {search.map((item: productType,key) => {
               return (
                 <>
                   <button
-                    key={item?.id}
+                    key={key}
                     onClick={() => {
                       Navigate(`/product/${item?.id}`);
                     }}
-                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-gray-50 hover:text-gray-700"
+                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-[#d2d2d2] bg-white hover:text-gray-700"
                     role="menuitem"
                   >
                     <div className="flex justify-between items-center">

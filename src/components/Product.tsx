@@ -5,6 +5,7 @@ import { addItem } from "../stateMangment/productsSlice";
 import { MdFavorite } from "react-icons/md";
 import { addFavorate } from "../stateMangment/favorateSlice";
 import { BiSolidCartAlt } from "react-icons/bi";
+import { motion } from "framer-motion";
 
 export default function Product(props: productType) {
   const dispatch = useDispatch();
@@ -16,13 +17,13 @@ export default function Product(props: productType) {
     dispatch(
       addItem({ title, price, img, description, id, tags, quantity: 1 })
     );
+
   };
 
   return (
     <>
       <div
-        className="w-[20rem] border border-gray-200 rounded shadow bg-white
-       dark:bg-gray-800 dark:border-gray-200  dark:text-white "
+        className="w-[20rem] border border-gray-200 rounded shadow bg-[#d2d2d2] dark:text-white "
       >
         <Link to={`/product/${id}`}>
           <img
@@ -42,9 +43,7 @@ export default function Product(props: productType) {
            
           </Link>
           <div className="flex items-center gap-4   mb-5">
-            {/* <span className="leading-relaxed text-black h-14 dark:text-white">{description}</span>
-            */}
-  	        <span className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
+              <span className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
              dark:bg-gray-200">{size}</span>
             <span
               className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
@@ -58,7 +57,7 @@ export default function Product(props: productType) {
               ${price}
             </span>
             <div className="flex justify-center items-center gap-4">
-              <button
+              <motion.button
                 onClick={() => {
                   dispatch(
                     addFavorate({
@@ -72,16 +71,22 @@ export default function Product(props: productType) {
                     })
                   );
                 }}
+                whileTap={{ scale: 0.7 }}
+                transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+
               >
                 <MdFavorite className='' size="24" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.7 }}
+                transition={{ duration: 0.3,  type: 'spring', stiffness: 500, damping: 30}}
+
                 onClick={handlAddItem}
                
               >
                 <BiSolidCartAlt size='24' className=''/>
                 
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>

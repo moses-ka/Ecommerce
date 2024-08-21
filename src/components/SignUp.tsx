@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from 'react-redux'
+import { userType } from "../types";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  
     const [username , setUsername] = useState('')
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
     const [confirmPassword , setConfirmPassword] = useState('')
     const [errorMsg , setErrorMsg] = useState('')
+      const user = useSelector((state: { user: userType }) => state.user);
+    const navigate = useNavigate()
+    useEffect(()=>{
+      if (user.logging !== false){
+        navigate('/')
+      }
+    },[user,navigate])
+
+  
+    
     const send = ()=>{
         const url = 'http://127.0.0.1:8000/signup/'
         axios.post(url,{
@@ -15,16 +29,15 @@ export default function SignUp() {
             password:password
         })
         .then(res=>console.log(res,'this is res'))
-        .catch(err=>console.log(err))
+        .catch(err=>console.log(err,'this is err'))
       }
     const HandleSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
-        console.log(username , email , password , confirmPassword , 'this is data')
+      
         if (password !== confirmPassword){
             setErrorMsg("Password does not match")
         }
-        else{
-            console.log('all good')}
+      
         send()
     }
   return (

@@ -1,22 +1,27 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loggedIn } from '../stateMangment/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-// interface loggedInUserType {
-//   user?: string;
-//   token?: string;
-//   loggedIn?: boolean;
-// }
+import { userType } from '../types';
+import { useSelector } from 'react-redux';
+
 
 export default function Login() {
+  const [errorMessage, setErrorMessage] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state: { user: userType }) => state.user);
 
+  useEffect(()=>{
+    if (user.logging !== false){
+      navigate('/')
+    }
+  },[user,navigate])
   const send = () => {
     const url = 'http://127.0.0.1:8000/signin/';
     axios
@@ -31,12 +36,16 @@ export default function Login() {
         localStorage.setItem('reduxUserState', JSON.stringify({ user_name, token, logging: true }));
         navigate('/');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        
+        setErrorMessage('Invalid Entry');
+      });
+
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log('handle submit been called');
+   
     send(); // Send the API request
   };
 
@@ -148,13 +157,14 @@ export default function Login() {
                           dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       />
                     </div>
-                    <div className="ml-3 text-sm">
+                    <div className="ml-3 text-sm flex flex-col justify-center items-start">
                       <label
                         htmlFor="remember"
                         className="text-gray-500 dark:text-gray-300"
                       >
                         Remember me
                       </label>
+                      <p className='text-base text-start text-red-600 '>{errorMessage}</p>
                     </div>
                   </div>
                   <a

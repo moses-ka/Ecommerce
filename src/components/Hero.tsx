@@ -1,9 +1,9 @@
-import { useAnimate } from "framer-motion";
-import  { useRef } from "react";
+import { useAnimate,motion } from "framer-motion";
+import { useRef, MouseEvent } from "react";
+import {MouseImageTrailProps} from "../types";
+import { GiClick } from "react-icons/gi";
 
-
-export const Hero = () => {
-   const serverUrl = 'http://127.0.0.1:8000/'
+export const Hero: React.FC = () => {
   return (
     <MouseImageTrail
       renderImageBuffer={50}
@@ -12,40 +12,72 @@ export const Hero = () => {
         `http://127.0.0.1:8000/media/Naruto_Tshirt_white_hMrdWqt.png`,
         
         `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white_vhK5Wqu.png`,
+        'http://127.0.0.1:8000//media/Naruto_Tshirt_e5PxsWR.png',
+        'http://127.0.0.1:8000/media/JJK_toji_stand_white.png',
+        'http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png',
+        'http://127.0.0.1:8000/media/One_punch_man_white.png',
+        'http://127.0.0.1:8000/media/Berzerk_stand.png',
+      
+
+
+
         `http://127.0.0.1:8000/media/Berzerk_stand_white_Bf77wWt_4f2fNdv.png`,
         
       ]}
     >
       <section className="flex justify-between h-[460px] w-full place-content-center bg-white overflow-hidden ">
-        <div className=" ml-20 flex justify-center items-center">
-        <p className="flex items-center justfy-center gap-2 text-3xl font-bold uppercase text-black">
-        New collection
-          <span className="text-xl">is here</span>
-         
-        </p>
-        </div>
+        <div className=" ml-20 flex flex-col justify-evenly max-w-full  text-black">
+          
        
+       
+  
+    <div className="flex   gap-4 text-3xl
+       md:text-4xl lg:text-6xl w-full">
+    <motion.div
+      initial={{ x: "-100vw" }} 
+      animate={{
+        x: ["-100vw","100vw"], 
+        transition: { duration:9, repeat: Infinity,delay:0.1}
+      }}
+      className="absolute top-20  transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+    >
+
+
+      <p className="inline text-4xl"> new collection </p> <GiClick className="inline" size={26} />
+     
+    </motion.div>
+    <motion.div
+      initial={{ x: "100vw" }} 
+      animate={{
+        x: ["100vw","-100vw"], 
+        transition: { duration:12, repeat: Infinity,delay:0.1}
+      }}
+      className="absolute   transform   w-full h-auto p-4 uppercase text-lg mid:text-xl lg:text-2xl xl:text-3xl"
+    >
+
+
+      <p className="inline text-4xl"> new collection </p> <GiClick className="inline" size={26} />
+     
+    </motion.div>
+    </div>
+        </div>
       </section>
     </MouseImageTrail>
   );
 };
 
-const MouseImageTrail = ({
+const MouseImageTrail: React.FC<MouseImageTrailProps> = ({
   children,
-  // List of image sources
   images,
-  // Will render a new image every X pixels between mouse moves
   renderImageBuffer,
-  // images will be rotated at a random number between zero and rotationRange,
-  // alternating between a positive and negative rotation
   rotationRange,
 }) => {
   const [scope, animate] = useAnimate();
 
-  const lastRenderPosition = useRef({ x: 0, y: 0 });
+  const lastRenderPosition = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const imageRenderCount = useRef(0);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
 
     const distance = calculateDistance(
@@ -63,7 +95,12 @@ const MouseImageTrail = ({
     }
   };
 
-  const calculateDistance = (x1, y1, x2, y2) => {
+  const calculateDistance = (
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number
+  ): number => {
     const deltaX = x2 - x1;
     const deltaY = y2 - y1;
 
@@ -77,7 +114,7 @@ const MouseImageTrail = ({
     const imageIndex = imageRenderCount.current % images.length;
     const selector = `[data-mouse-move-index="${imageIndex}"]`;
 
-    const el = document.querySelector(selector);
+    const el = document.querySelector(selector) as HTMLImageElement;
 
     el.style.top = `${lastRenderPosition.current.y}px`;
     el.style.left = `${lastRenderPosition.current.x}px`;
@@ -117,7 +154,7 @@ const MouseImageTrail = ({
   };
 
   return (
-    <div 
+    <div
       ref={scope}
       className="relative top-24 overflow-hidden"
       onMouseMove={handleMouseMove}
@@ -136,3 +173,5 @@ const MouseImageTrail = ({
     </div>
   );
 };
+
+export default MouseImageTrail;

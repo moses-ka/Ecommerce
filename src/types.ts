@@ -1,8 +1,8 @@
 
 export interface userType {
-  user: "";
+  user_name: "";
   token: "";
-  loggedIn: false;
+  logging: false;
 }
 export interface productType {
   id: number;
@@ -37,4 +37,10 @@ export interface searchResultsType {
   price: number;
   img: string;
   description: string;
+}
+export interface MouseImageTrailProps {
+  children: React.ReactNode;
+  images: string[];
+  renderImageBuffer: number;
+  rotationRange: number;
 }
