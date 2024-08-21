@@ -25,8 +25,8 @@ export const Hero: React.FC = () => {
         
       ]}
     >
-      <section className="flex justify-between h-[460px] w-full place-content-center bg-white overflow-hidden ">
-        <div className=" ml-20 flex flex-col justify-evenly max-w-full  text-black">
+      <section className="flex justify-between h-[460px] w-full place-content-center bg-white dark:bg-[#19191a]  overflow-hidden ">
+        <div className=" ml-20 flex flex-col justify-evenly max-w-full   text-black dark:text-white">
           
        
        
@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
     >
 
 
-      <p className="inline text-4xl"> new collection </p> <GiClick className="inline" size={26} />
+      <p className="inline text-4xl "> new collection </p> <GiClick className="inline" size={26} />
      
     </motion.div>
     <motion.div

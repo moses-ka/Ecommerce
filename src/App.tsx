@@ -11,11 +11,13 @@ function App() {
 
   return (
     < >
-   
+   <div className="dark:bg-[#19191a] bg-white text-black dark:text-white">
+
     <SideBar/>
     <Hero/>
     <Products/>
     <Footer/>
+   </div>
 
 </>
   )

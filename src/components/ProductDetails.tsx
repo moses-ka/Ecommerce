@@ -22,7 +22,7 @@ export default function Product() {
   return (
     <>
     <SideBar/>
-      <section className=" mt-6 text-black dark:text-gray-200 body-font overflow-hidden ">
+      <section className=" mt-6 text-black dark:text-white dark:bg-[#19191a] body-font overflow-hidden ">
         <div className="flex justify-evenly items-center px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img

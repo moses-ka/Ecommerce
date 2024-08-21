@@ -23,7 +23,7 @@ export default function Product(props: productType) {
   return (
     <>
       <div
-        className="w-[20rem] border border-gray-200 rounded shadow bg-[#d2d2d2] dark:text-white "
+        className="w-[20rem] border border-gray-200 rounded shadow bg-[#ffffff] dark:bg-[#19191a] dark:text-white "
       >
         <Link to={`/product/${id}`}>
           <img
@@ -43,11 +43,11 @@ export default function Product(props: productType) {
            
           </Link>
           <div className="flex items-center gap-4   mb-5">
-              <span className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
-             dark:bg-gray-200">{size}</span>
+              <span className=" text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
+             ">{size}</span>
             <span
-              className="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
-             dark:bg-gray-200 "
+              className=" text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
+              "
             >
               {tags}
             </span>

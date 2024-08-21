@@ -21,7 +21,7 @@ export default function Products() {
   return (  
     <>
     <div className='p-2 mt-24    w-full  '>
-      <div className='flex flex-col md:flex-row  justify-center items-center gap-6 flex-wrap w-full'>
+      <div className='flex flex-col md:flex-row  justify-center items-center gap-6 flex-wrap w-full dark:bg-[#19191a]'>
 
       
             {data?.map((item:productType)=>{

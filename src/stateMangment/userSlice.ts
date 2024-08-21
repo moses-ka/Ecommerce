@@ -20,6 +20,7 @@ export const userSlice = createSlice({
       state.user_name = '';
       state.token = '';
       state.logging = false;
+      
     },
   },
 });
