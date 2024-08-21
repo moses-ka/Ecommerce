@@ -10,8 +10,9 @@ export const Hero = () => {
       rotationRange={25}
       images={[
         `http://127.0.0.1:8000/media/Naruto_Tshirt_white_hMrdWqt.png`,
-        `http://127.0.0.1:8000//media/Bleach.png`,
+        
         `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white_vhK5Wqu.png`,
+        `http://127.0.0.1:8000/media/Berzerk_stand_white_Bf77wWt_4f2fNdv.png`,
         
       ]}
     >
