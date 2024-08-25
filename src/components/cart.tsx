@@ -4,6 +4,7 @@ import { StateType,productInCartType } from "../types";
 import { userType } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./SideBar";
+import axios from "axios";
 
 export default function Cart() {
 const [cart, setCart] = useState<productInCartType[]>([]); // Update the type of cart state
@@ -33,10 +34,24 @@ const handleMinus = (id:number) => {
   dispatch(minusItem(id));
 }
 const HandleCheckout = () => {
-  console.log(products , "products");
-  console.log(total , "total");
-  console.log(user , "user");
-}
+  const url = 'http://127.0.0.1:8000/products/checkout';
+  const data = {
+    username: user.user_name,
+    products: products.map(product => product.id),  // Send product IDs
+    total: total
+  };
+  
+  console.log(data, 'this is data');
+  axios.post(url, data)
+    .then(res => {
+      console.log(res, 'this is res');
+    })
+    .catch(err => {
+      console.error(err.response?.data || err.message, 'this is err');
+    });
+};
+
+
 
   return (
     <>
