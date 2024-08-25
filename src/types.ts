@@ -44,3 +44,14 @@ export interface MouseImageTrailProps {
   renderImageBuffer: number;
   rotationRange: number;
 }
+export interface OrderedListProps {
+  user: userType
+}
+export interface ordersType {
+  id:number;
+  total : number;
+  user: number;
+  date: string;
+  products: number[];
+}
+

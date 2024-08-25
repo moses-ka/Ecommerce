@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux';
 import { loggedOut } from '../stateMangment/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { userType } from '../types';
-
+import OrderedList from './OrderedList'
+import { VscArchive } from "react-icons/vsc";
 
 
 const UserList: React.FC = () => {
-    const [user, setUser] = useState<userType >();
+    const [user, setUser] = useState<userType | undefined>(undefined);
     const UserData = useSelector((state: { user: userType }) => state.user);
     const dispatch = useDispatch();
     const Navigate = useNavigate();
@@ -22,7 +23,9 @@ const UserList: React.FC = () => {
     return (
         <>
       <AnimatePresence>
-       
+       {user&&(
+
+      
           <motion.div
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 100, opacity: 1 }}
@@ -40,12 +43,16 @@ const UserList: React.FC = () => {
            
               <h2 className="text-xl text-center">{user?.user_name.replace(/@.*/, '')}</h2>
            
-            <div className="mt-4 space-y-6">
-              <ul>
-                <li>Orders History</li>
-                <li>Wish List</li>
-                <li>Costumer Serves</li>
-              </ul>
+            <div className="mt-4 space-y-6 ">
+              <div className='flex flex-col justify-normal items-start'>
+                <div className='flex justify-normal items-center gap-2'>
+                <VscArchive /> Orders 
+                </div>
+                <div className='ml-6'>
+
+                  <OrderedList user={user} />
+                </div>
+              </div>
               <div className="space-y-4 text-center">
                 <button onClick={()=>{
                 if(user?.logging){
@@ -59,8 +66,9 @@ const UserList: React.FC = () => {
                 }} className='block rounded border border-gray-600 px-5 py-3 text-sm transition hover:ring-1 w-full hover:ring-gray-400'>{user?.logging?'Sign Out ':"Logg In"}</button>
               </div>
             </div>
+            
           </motion.div>
-     
+      )}
       </AnimatePresence>
     </>
     );
