@@ -17,6 +17,7 @@ export const Hero: React.FC = () => {
         'http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png',
         'http://127.0.0.1:8000/media/One_punch_man_white.png',
         'http://127.0.0.1:8000/media/Berzerk_stand.png',
+        "http://127.0.0.1:8000/media/one_piece_Tshirt_zoro_2.png",
       
 
 
