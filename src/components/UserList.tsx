@@ -48,7 +48,7 @@ const UserList: React.FC = () => {
                 <div className='flex justify-normal items-center gap-2'>
                 <VscArchive /> Orders 
                 </div>
-                <div className='ml-6'>
+                <div className='ml-6 h-40 overflow-auto'>
 
                   <OrderedList user={user} />
                 </div>
@@ -58,6 +58,7 @@ const UserList: React.FC = () => {
                 if(user?.logging){
                   
                     dispatch(loggedOut());
+                    Navigate('/')
                 }
                 else{
                     Navigate('/login')
