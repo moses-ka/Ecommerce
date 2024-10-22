@@ -13,11 +13,11 @@ export default function Product() {
   const {id} = useParams()
   const [product, setProduct] = useState<productType>();
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/product/${id}`)
+    axios.get(`https://moseska.pythonanywhere.com//api/product/${id}`)
     .then(res => setProduct(res.data))
   }, [id])
 
-  const serverUrl = 'http://127.0.0.1:8000'
+  const serverUrl = 'https://moseska.pythonanywhere.com/'
 
   return (
     <>

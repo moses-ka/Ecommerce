@@ -11,7 +11,7 @@ export default function Products() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = useSelector((state:userType) => state.user_name)
   useEffect(() => {
-     fetch('http://127.0.0.1:8000/api/products')
+     fetch('https://moseska.pythonanywhere.com//api/products')
     .then(res => res.json())
     .then(data => setData(data))
    
