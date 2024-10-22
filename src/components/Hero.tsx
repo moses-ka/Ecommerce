@@ -4,6 +4,7 @@ import {MouseImageTrailProps} from "../types";
 import { GiClick } from "react-icons/gi";
 
 export const Hero: React.FC = () => {
+  const backEndUrl = 'https://moseska.pythonanywhere.com/'
   return (
     <MouseImageTrail
       renderImageBuffer={50}
@@ -11,11 +12,9 @@ export const Hero: React.FC = () => {
       images={[
        
         
-        `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white.png`,
+        `${backEndUrl}/media/one_piece_Tshirt_luffy_white_k6TSnQb.png`,
         
-        'http://127.0.0.1:8000/media/JJK_toji_stand_white.png',
-       
-        'http://127.0.0.1:8000/media/One_punch_man_white.png',
+        
     
         
       ]}

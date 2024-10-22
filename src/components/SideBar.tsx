@@ -41,7 +41,7 @@ export default function SideBar() {
     if (searchValue === "") {
       return;
     }
-    fetch(`http://127.0.0.1:8000/api/products/search/${searchValue}`)
+    fetch(`https://moseska.pythonanywhere.com/api/products/search/${searchValue}`)
       .then((res) => res.json())
       .then((data) => setResults(data));
   }, [searchValue]);

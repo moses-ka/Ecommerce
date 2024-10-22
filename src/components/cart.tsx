@@ -34,7 +34,7 @@ const handleMinus = (id:number) => {
   dispatch(minusItem(id));
 }
 const HandleCheckout = () => {
-  const url = 'http://127.0.0.1:8000/products/checkout';
+  const url = 'https://moseska.pythonanywhere.com//checkout';
   const data = {
     username: user.user_name,
     products: products.map(product => product.id),  // Send product IDs

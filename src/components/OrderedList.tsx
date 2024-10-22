@@ -12,7 +12,7 @@ export default function OrderedList(props: OrderedListProps) {
   const userName = user?.user_name.replace(/@.*/, '')
 console.log(userName,"this is username")
   useEffect(() => {
-    const url = "http://127.0.0.1:8000/ordered-products"
+    const url = "https://moseska.pythonanywhere.com//ordered-products"
     const data = {
       username: userName,
     }

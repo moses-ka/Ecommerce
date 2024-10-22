@@ -23,7 +23,7 @@ export default function Login() {
     }
   },[user,navigate])
   const send = () => {
-    const url = 'http://127.0.0.1:8000/signin/';
+    const url = 'https://moseska.pythonanywhere.com//signin/';
     axios
       .post(url, {
         username: username,

@@ -22,7 +22,7 @@ export default function SignUp() {
   
     
     const send = ()=>{
-        const url = 'http://127.0.0.1:8000/signup/'
+        const url = 'https://moseska.pythonanywhere.com//signup/'
         axios.post(url,{
             username:username,
             email:email,

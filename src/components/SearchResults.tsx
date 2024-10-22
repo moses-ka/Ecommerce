@@ -44,7 +44,7 @@ export default function SearchResults(props: {
                   >
                     <div className="flex justify-between items-center">
                     <img
-                        src={"http://127.0.0.1:8000/" + item.img}
+                        src={"https://moseska.pythonanywhere.com/" + item.img}
                         alt={"Image + " + item.title}
                         className="w-10 rounded object-cover"
                       />                    <span>{item.title}</span> <span className="">{item.price} Euro</span>

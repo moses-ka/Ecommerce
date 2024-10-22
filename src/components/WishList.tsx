@@ -91,7 +91,7 @@ export default function WishList() {
                   
                     <li key={index} className="flex items-center gap-4">
                       <img
-                        src={"http://127.0.0.1:8000/" + item.img}
+                        src={"https://moseska.pythonanywhere.com/" + item.img}
                         alt={"Image + " + item.title}
                         className="w-8 rounded object-cover"
                       />
