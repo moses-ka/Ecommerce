@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loggedIn } from '../stateMangment/userSlice';
@@ -17,13 +17,13 @@ export default function Login() {
   const navigate = useNavigate();
   const user = useSelector((state: { user: userType }) => state.user);
 
-  useEffect(()=>{
-    if (user.logging !== false){
+  useEffect(() => {
+    if (user.logging !== false) {
       navigate('/')
     }
-  },[user,navigate])
+  }, [user, navigate])
   const send = () => {
-    const url = 'https://moseska.pythonanywhere.com//signin/';
+    const url = 'https://moseska.pythonanywhere.com/signin/';
     axios
       .post(url, {
         username: username,
@@ -37,7 +37,7 @@ export default function Login() {
         navigate('/');
       })
       .catch((err) => {
-        
+
         setErrorMessage('Invalid Entry');
       });
 
@@ -45,7 +45,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   
+
     send(); // Send the API request
   };
 
@@ -96,7 +96,7 @@ export default function Login() {
                     placeholder="Jone-Doe"
                     autoComplete="username"
                     required={true}
-                    onChange={(e)=>setUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ export default function Login() {
                           dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required={true}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div>
@@ -141,7 +141,7 @@ export default function Login() {
                       dark:placeholder-gray-400 dark:text-white
                        dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required={true}
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="flex items-center justify-between">
