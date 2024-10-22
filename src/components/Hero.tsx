@@ -9,20 +9,14 @@ export const Hero: React.FC = () => {
       renderImageBuffer={50}
       rotationRange={25}
       images={[
-        `http://127.0.0.1:8000/media/Naruto_Tshirt_white_hMrdWqt.png`,
+       
         
-        `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white_vhK5Wqu.png`,
-        'http://127.0.0.1:8000//media/Naruto_Tshirt_e5PxsWR.png',
+        `http://127.0.0.1:8000//media/one_piece_Tshirt_luffy_white.png`,
+        
         'http://127.0.0.1:8000/media/JJK_toji_stand_white.png',
-        'http://127.0.0.1:8000/media/Naruto_Tshirt_madara.png',
+       
         'http://127.0.0.1:8000/media/One_punch_man_white.png',
-        'http://127.0.0.1:8000/media/Berzerk_stand.png',
-        "http://127.0.0.1:8000/media/one_piece_Tshirt_zoro_2.png",
-      
-
-
-
-        `http://127.0.0.1:8000/media/Berzerk_stand_white_Bf77wWt_4f2fNdv.png`,
+    
         
       ]}
     >
