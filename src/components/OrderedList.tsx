@@ -10,7 +10,7 @@ export default function OrderedList(props: OrderedListProps) {
 
   const { user } = props
   const userName = user?.user_name.replace(/@.*/, '')
-  console.log(userName, "this is username")
+  
   useEffect(() => {
     const url = "https://moseska.pythonanywhere.com/ordered-products"
     const data = {
@@ -24,14 +24,14 @@ export default function OrderedList(props: OrderedListProps) {
     })
       .then(res => {
         const orders: ordersType[] = res.data.ordered_products // Make sure the response is typed correctly
-        console.log(orders)
+       
         setOrderedList(orders)
       })
       .catch(err => console.log(err, 'this is err'))
   }, [user])
 
   const HandleOrderClick = () => {
-    console.log('clicked')
+    
   }
 
   return (
@@ -40,7 +40,7 @@ export default function OrderedList(props: OrderedListProps) {
         <ul>
           {orderedList.length > 0 && user.logging ? (
             orderedList.map((item: ordersType) => {
-              console.log(item)
+             
               return (
                 <>
                   <button className="h-48" onClick={HandleOrderClick} >

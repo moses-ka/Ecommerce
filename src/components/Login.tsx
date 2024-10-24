@@ -38,6 +38,7 @@ export default function Login() {
         navigate('/');
       })
       .catch((err) => {
+        console.error(err.response?.data || err.message, 'this is err');
 
         setErrorMessage('Invalid Entry');
       });

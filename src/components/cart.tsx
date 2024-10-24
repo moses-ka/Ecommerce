@@ -41,7 +41,7 @@ export default function Cart() {
       total: total
     };
 
-    console.log(data, 'this is data');
+    ;
     axios.post(url, data)
       .then(res => {
         console.log(res, 'this is res');

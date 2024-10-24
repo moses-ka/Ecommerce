@@ -11,7 +11,7 @@ export default function Product(props: productType) {
   const dispatch = useDispatch();
 
   const { title, price, img, id, description, tags,size }: productType = props;
-  console.log(img , 'img');
+ 
   const imgUrl = `https://moseska.pythonanywhere.com/${img}`;
   const handlAddItem = () => {
     dispatch(

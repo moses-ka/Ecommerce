@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
-import { userType, productType } from '../types'
-import { useSelector } from 'react-redux'
+import {  productType } from '../types'
+
 import Product from './Product'
 
 
@@ -9,7 +9,7 @@ import Product from './Product'
 export default function Products() {
   const [data, setData] = useState([])
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const user = useSelector((state: userType) => state.user_name)
+  
   useEffect(() => {
     fetch('https://moseska.pythonanywhere.com/api/products')
       .then(res => res.json())

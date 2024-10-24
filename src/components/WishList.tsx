@@ -55,7 +55,7 @@ export default function WishList() {
     }
   };
 
-  // console.log(wishList, "wish list ");
+  
   return (
     <>
     <AnimatePresence>
