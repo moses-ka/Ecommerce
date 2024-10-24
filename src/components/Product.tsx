@@ -23,11 +23,11 @@ export default function Product(props: productType) {
   return (
     <>
       <div
-        className="w-[20rem] border border-gray-200 rounded shadow bg-[#ffffff] dark:bg-[#19191a] dark:text-white "
+        className="w-[15rem] border border-gray-200 rounded shadow bg-[#ffffff] dark:bg-[#19191a] dark:text-white "
       >
         <Link to={`/product/${id}`}>
           <img
-            className=" rounded h-[26rem] shadow-md "
+            className=" rounded h-[20rem] shadow-md "
             src={imgUrl}
             alt="product img"
           />

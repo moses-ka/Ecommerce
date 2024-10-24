@@ -34,7 +34,7 @@ export default function Cart() {
     dispatch(minusItem(id));
   }
   const HandleCheckout = () => {
-    const url = 'https://moseska.pythonanywhere.com/checkout';
+    const url = 'https://moseska.pythonanywhere.com/products/checkout';
     const data = {
       username: user.user_name,
       products: products.map(product => product.id),  // Send product IDs

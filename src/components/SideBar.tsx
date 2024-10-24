@@ -66,7 +66,7 @@ export default function SideBar() {
                     Navigate("/");
                   }}
                 >
-                  <img src={MKcommerce} alt="MKcommerce Logo" className="w-20" />
+                  <img src={MKcommerce} alt="MKcommerce Logo" className="w-20  " />
                 </motion.button>
               </span>
             </div>

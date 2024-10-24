@@ -24,10 +24,10 @@ export default function Product() {
       <SideBar />
       <section className=" mt-6 text-black dark:text-white dark:bg-[#19191a] body-font overflow-hidden ">
         <div className="flex justify-evenly items-center px-5 py-24 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <div className="w-full flex justify-center flex-wrap items-center flex-col md:flex-row lg:flex-row   ">
             <img
               alt={`product Image ${product?.title}`}
-              className="lg:w-2/6 w-full object-cover object-center rounded border border-gray-200"
+              className="lg:w-2/6 h-2/6  w-full object-cover object-center rounded border border-gray-200"
               src={`${serverUrl}${product?.img}`}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -36,7 +36,7 @@ export default function Product() {
                 {product?.title}
               </h1>
 
-              <p className="leading-relaxed w-5/6">
+              <p className="leading-relaxed w-full text-2xl">
                 {product?.description}
               </p>
               <div className="flex mt-6 items-center pb-5 border-b-2 justify-between border-gray-200 mb-5">
@@ -46,10 +46,11 @@ export default function Product() {
 
 
               </div>
-              <div className="flex justify-center items-center ">
+              <div className="flex justify-between items-center ">
                 <span className="title-font font-medium text-2xl text-gray-900 dark:text-gray-200">
                   {product?.price} $
                 </span>
+                <div className='flex justify-center items-center'>
                 <button
                   onClick={() => {
                     if (product)
@@ -75,6 +76,7 @@ export default function Product() {
                   text-black transition hover:ring-1 hover:ring-black ">
                   add to cart
                 </button>
+                </div>
               </div>
             </div>
           </div>

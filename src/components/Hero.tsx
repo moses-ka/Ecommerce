@@ -13,6 +13,12 @@ export const Hero: React.FC = () => {
        
         
         `${backEndUrl}/media/one_piece_Tshirt_luffy_white_k6TSnQb.png`,
+        `https://moseska.pythonanywhere.com//media/JJK_toji_stand_white.png`,
+        'https://moseska.pythonanywhere.com//media/one_piece_Tshirt_zoro_2.png',
+          'https://moseska.pythonanywhere.com//media/Berzerk.png',
+          'https://moseska.pythonanywhere.com//media/Naruto_Tshirt.png',
+          'https://moseska.pythonanywhere.com//media/Bleach.png',
+          'https://moseska.pythonanywhere.com//media/One_punch_man_white.png',
         
         
     
