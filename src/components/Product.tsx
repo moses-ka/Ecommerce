@@ -43,10 +43,10 @@ export default function Product(props: productType) {
            
           </Link>
           <div className="flex items-center gap-4   mb-5">
-              <span className=" text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
+              <span className="  text-xs font-semibold px-2.5 py-0.5 rounded
              ">{size}</span>
             <span
-              className=" text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded
+              className="  text-xs font-semibold px-2.5 py-0.5 rounded
               "
             >
               {tags}

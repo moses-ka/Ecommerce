@@ -22,12 +22,12 @@ export default function SearchResults(props: {
     <>
       <div
         ref={ref}
-        className=" absolute hidden top-[4rem] text-gray-900 dark:text-white   w-full"
+        className=" absolute hidden top-[4rem] dark:bg-[#19191a] text-gray-900 dark:text-white   w-full"
         tabIndex={1}
       >
         <div
           className="absolute end-0 z-10 mt-2 w-full divide-y divide-gray-100 rounded-md border border-gray-100
-          dark:bg-[#19191a] shadow-lg "
+          dark:bg-[#19191a] shadow-lg  "
           role="menu"
         >
           <div className="p-2">
@@ -39,7 +39,8 @@ export default function SearchResults(props: {
                     onClick={() => {
                       Navigate(`/product/${item?.id}`);
                     }}
-                    className="block w-full rounded-lg px-4 py-2 text-sm hover:bg-[#d2d2d2] bg-white hover:text-gray-700"
+                    className="block w-full rounded-lg px-4 py-2 text-sm
+                     hover:bg-[#d2d2d2] bg-white text-black dark:text-white dark:bg-[#19191a] hover:text-black"
                     role="menuitem"
                   >
                     <div className="flex justify-between items-center">

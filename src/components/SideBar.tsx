@@ -66,7 +66,7 @@ export default function SideBar() {
                     Navigate("/");
                   }}
                 >
-                  <img src={MKcommerce} alt="MKcommerce Logo" className="w-20  " />
+                  <img src={MKcommerce} alt="MKcommerce Logo" className="w-20 dark:invert  " />
                 </motion.button>
               </span>
             </div>
@@ -88,7 +88,7 @@ export default function SideBar() {
                   ref={search}
                   onBlur={blur}
                   placeholder="Search"
-                  className="border-2 hidden border-gray-200 rounded-lg p-1 "
+                  className="border-2 hidden text-black border-gray-200 rounded-lg p-1 "
                 />
                 </form>
                 <motion.button 
