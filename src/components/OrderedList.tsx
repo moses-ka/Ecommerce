@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { OrderedListProps, ordersType } from "../types"
-import { useSelector } from "react-redux"
+
 
 export default function OrderedList(props: OrderedListProps) {
   const [orderedList, setOrderedList] = useState<ordersType[]>([]) // Initialize as an empty array
